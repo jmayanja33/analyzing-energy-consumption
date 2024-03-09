@@ -1,3 +1,7 @@
+"""
+Script to create clusters of quarters based on energy consumption and GDP.
+"""
+
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.cluster import KMeans
@@ -24,7 +28,7 @@ color_map = [colors[i] for i in kmeans.labels_]
 
 plt.figure(figsize=(6, 4))
 for i in range(len(x_data)):
-    plt.scatter(x_data[i], y_data[i], marker=f'$Q{point_data[i]}$', c=color_map[i], s=100)
+    plt.scatter(x_data[i], y_data[i], marker=f'${point_data[i]}$', c=color_map[i], s=100)
 
 plt.title('Clustered Quarterly Energy Data')
 plt.savefig('clusters.png')
