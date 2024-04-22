@@ -1,0 +1,16 @@
+DICKEY-FULLER TEST RESULTS:
+    - Model: HoltWinters
+    - Data Type: RawData
+    - Time Series: GDP
+    
+    - Null Hypothesis: The series is stationary
+    
+    - ADF-Statistic: -3.0184193005780697
+    - P-Value: 0.12700397687694087
+    - Number of Lags: 0
+    - Number of Observations: 199
+    - Critical Values: {'1%': -4.004997848936356, '5%': -3.4327862452981046, '10%': -3.140144918368515}
+    
+** Since the p-value (0.12700397687694087) is not less than the significance value (0.05), the null hypothesis IS NOT rejected, so the series IS NOT deemed stationary. **
+
+    

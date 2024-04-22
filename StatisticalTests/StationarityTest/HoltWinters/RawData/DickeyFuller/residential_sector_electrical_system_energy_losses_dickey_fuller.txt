@@ -1,0 +1,16 @@
+DICKEY-FULLER TEST RESULTS:
+    - Model: HoltWinters
+    - Data Type: RawData
+    - Time Series: Residential Sector Electrical System Energy Losses
+    
+    - Null Hypothesis: The series is stationary
+    
+    - ADF-Statistic: -3.9741552998246235
+    - P-Value: 0.00956626613048654
+    - Number of Lags: 12
+    - Number of Observations: 187
+    - Critical Values: {'1%': -4.00801576357394, '5%': -3.4342334139298014, '10%': -3.140992402675066}
+    
+** Since the p-value (0.00956626613048654) is less than the significance value (0.05), the null hypothesis IS rejected, so the series IS deemed stationary. **
+
+    
