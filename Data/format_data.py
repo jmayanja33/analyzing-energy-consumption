@@ -5,7 +5,7 @@ Script to format all data into quarters and join the two datasets into a single 
 import os
 import pandas as pd
 
-month_dict ={
+month_dict = {
     "enero": "Q1",
     "febrero": "Q1",
     "marzo": "Q1",
@@ -18,6 +18,10 @@ month_dict ={
     "octubre": "Q4",
     "noviembre": "Q4",
     "diciembre": "Q4"
+}
+
+quarter_dict = {
+    "Q1": "January", "Q2": "April", "Q3": "July", "Q4": "October"
 }
 
 
@@ -39,48 +43,57 @@ def format_quarter_data(df, data):
     return formatted_data
 
 
-# Load data
-energy_consumption = pd.read_csv('Energy Consumption_r.csv')
-gdp = pd.read_csv('GDP-1.csv')
+def format_final_date(item):
+    """Function to remove Quarter from the date column"""
+    return item[0:4]
 
-# Map data together
-data = []
-quarter_data = create_quarter_data_dict(energy_consumption)
-counter = 0
 
-# Process energy data
-for i in range(len(energy_consumption)):
-    date = energy_consumption["Month"][i].split()
-    quarter = f"{date[0]}{month_dict[date[1]]}"
+# Main to run
+if __name__ == "__main__":
+    # Load data
+    energy_consumption = pd.read_csv('Energy Consumption_r.csv')
+    gdp = pd.read_csv('GDP-1.csv')
 
-    # Calculate quarter data
+    # Map data together
+    data = []
+    quarter_data = create_quarter_data_dict(energy_consumption)
+    counter = 0
+
+    # Process energy data
+    for i in range(len(energy_consumption)):
+        date = energy_consumption["Month"][i].split()
+        quarter = f"{date[0]}{month_dict[date[1]]}"
+
+        # Calculate quarter data
+        for col in energy_consumption.columns:
+            if col == 'Month':
+                quarter_data["DATE"] = quarter
+                quarter_data["Quarter"] = month_dict[date[1]]
+            else:
+                quarter_data[col] += energy_consumption[col][i]
+        counter += 1
+
+        # Reset quarter
+        if counter == 3:
+            formatted_quarter_data = format_quarter_data(energy_consumption, quarter_data)
+            data.append(formatted_quarter_data)
+            quarter_data = create_quarter_data_dict(energy_consumption)
+            counter = 0
+
+
+    # Initialize columns
+    columns = ['DATE', 'Quarter']
     for col in energy_consumption.columns:
-        if col == 'Month':
-            quarter_data["DATE"] = quarter
-            quarter_data["Quarter"] = month_dict[date[1]]
-        else:
-            quarter_data[col] += energy_consumption[col][i]
-    counter += 1
+        if col != 'Month':
+            columns.append(col)
 
-    # Reset quarter
-    if counter == 3:
-        formatted_quarter_data = format_quarter_data(energy_consumption, quarter_data)
-        data.append(formatted_quarter_data)
-        quarter_data = create_quarter_data_dict(energy_consumption)
-        counter = 0
+    # Create final data frame
+    df = pd.DataFrame(data, columns=columns)
 
+    # Concatenate with GDP data
+    df = pd.merge(df, gdp, on='DATE', how='inner')
+    df['DATE'] = df['DATE'].apply(lambda x: format_final_date(x))
+    df['Month'] = [quarter_dict[i] for i in df['Quarter']]
 
-# Initialize columns
-columns = ['DATE', 'Quarter']
-for col in energy_consumption.columns:
-    if col != 'Month':
-        columns.append(col)
-
-# Create final data frame
-df = pd.DataFrame(data, columns=columns)
-
-# Concatenate with GDP data
-df = pd.merge(df, gdp, on='DATE', how='inner')
-
-# Save formatted data
-df.to_csv('formatted_data.csv', index=False)
+    # Save formatted data
+    df.to_csv('formatted_data.csv', index=False)
