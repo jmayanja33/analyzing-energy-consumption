@@ -24,21 +24,6 @@ def format_column_name(column, filename=True):
         return column.replace('.', ' ')
 
 
-def save_model(model, model_type, column, data_type):
-    """Function to save a model as a pickle file"""
-    make_directory("../Models", model_type)
-    make_directory(f"../Models/{model_type}", data_type)
-
-    with open(f"../Models/{model_type}/{data_type}/{format_column_name(column)}.pkl", "wb") as pkl_file:
-        pickle.dump(model, pkl_file)
-        pkl_file.close()
-
-
-def load_model():
-    """Function to load a model from a pickle file"""
-    pass
-
-
 def format_as_datetime(df):
     """Function to format data as datetime for plotting"""
     datetimes = []
@@ -53,14 +38,14 @@ def format_as_datetime(df):
     return datetimes
 
 
-def plot_ts(data, column, directory, data_type):
+def plot_ts(data, column, quarterly, directory, data_type):
     """Function to plot a time series"""
-    print(f"Plotting time series for: {directory} - {column}")
+    print(f"Plotting time series for: {quarterly} - {directory} - {column}")
 
     # Create figure
     plt.figure(figsize=(10, 8))
     plt.xlabel("Date")
-    plt.ylabel(column)
+    plt.ylabel(format_column_name(column, filename=False))
     plt.title(f"USA {format_column_name(column, filename=False)} (1973-2022)")
 
     # Plot GDP
@@ -69,19 +54,20 @@ def plot_ts(data, column, directory, data_type):
     plt.plot(x_data, y_data)
 
     # Save figure
-    make_directory("../Visualizations", directory)
-    make_directory(f"../Visualizations/{directory}", "TSPlots")
-    make_directory(f"../Visualizations/{directory}/TSPlots", data_type)
-    plt.savefig(f"../Visualizations/{directory}/TSPlots/{data_type}/{format_column_name(column)}.png")
+    make_directory("../Visualizations", quarterly)
+    make_directory(f"../Visualizations/{quarterly}", directory)
+    make_directory(f"../Visualizations/{quarterly}/{directory}", "TSPlots")
+    make_directory(f"../Visualizations/{quarterly}/{directory}/TSPlots", data_type)
+    plt.savefig(f"../Visualizations/{quarterly}/{directory}/TSPlots/{data_type}/{format_column_name(column)}.png")
     plt.clf()
 
 
-def acf(data, column, directory, data_type, lags=None):
+def acf(data, column, quarterly, directory, data_type, lags=None):
     """Function to plot an ACF plot"""
-    print(f"Plotting ACF for: {directory} - {column}")
+    print(f"Plotting ACF for: {quarterly} - {directory} - {column}")
 
     if lags is None:
-        plot_acf(data, lags=len(data)/10)
+        plot_acf(data, lags=24*4)
     else:
         plot_acf(data, lags=lags)
     plt.title(f"{format_column_name(column, filename=False)} ACF Plot")
@@ -89,15 +75,16 @@ def acf(data, column, directory, data_type, lags=None):
     plt.ylabel("ACF Value")
 
     # Save figure
-    make_directory("../Visualizations", directory)
-    make_directory(f"../Visualizations/{directory}", "ACF")
-    make_directory(f"../Visualizations/{directory}/ACF", data_type)
-    plt.savefig(f"../Visualizations/{directory}/ACF/{data_type}/{format_column_name(column)}.png")
+    make_directory("../Visualizations", quarterly)
+    make_directory(f"../Visualizations/{quarterly}", directory)
+    make_directory(f"../Visualizations/{quarterly}/{directory}", "ACF")
+    make_directory(f"../Visualizations/{quarterly}/{directory}/ACF", data_type)
+    plt.savefig(f"../Visualizations/{quarterly}/{directory}/ACF/{data_type}/{format_column_name(column)}.png")
 
 
-def pacf(data, column, directory, data_type, lags=None):
+def pacf(data, column, quarterly, directory, data_type, lags=None):
     """Function to plot a PACF plot"""
-    print(f"Plotting ACF for: {directory} - {column}")
+    print(f"Plotting ACF for: {quarterly} - {directory} - {column}")
 
     if lags is None:
         plot_pacf(data, lags=len(data)/10)
@@ -108,15 +95,16 @@ def pacf(data, column, directory, data_type, lags=None):
     plt.ylabel("PACF Value")
 
     # Save figure
-    make_directory("../Visualizations", directory)
-    make_directory(f"../Visualizations/{directory}", "PACF")
-    make_directory(f"../Visualizations/{directory}/PACF", data_type)
-    plt.savefig(f"../Visualizations/{directory}/PACF/{data_type}/{format_column_name(column)}.png")
+    make_directory("../Visualizations", quarterly)
+    make_directory(f"../Visualizations/{quarterly}", directory)
+    make_directory(f"../Visualizations/{quarterly}/{directory}", "PACF")
+    make_directory(f"../Visualizations/{quarterly}/{directory}/PACF", data_type)
+    plt.savefig(f"../Visualizations/{quarterly}/{directory}/PACF/{data_type}/{format_column_name(column)}.png")
 
 
-def dickey_fuller(data, column, directory, data_type, significance=0.05, autolag="AIC"):
+def dickey_fuller(data, column, quarterly, directory, data_type, significance=0.05, autolag="AIC"):
     """Function to perform a Dickey-Fuller test for stationarity and save the results to a file"""
-    print(f"Performing Dickey-Fuller for: {directory} - {column} ")
+    print(f"Performing Dickey-Fuller for: {quarterly} - {directory} - {column} ")
 
     # Perform a Dickey-Fuller test
     df_test = adfuller(data, autolag=autolag, regression="ct")
@@ -131,12 +119,13 @@ def dickey_fuller(data, column, directory, data_type, significance=0.05, autolag
         stationary = False
 
     # Make directory for file
-    make_directory("../StatisticalTests/StationarityTest", directory)
-    make_directory(f"../StatisticalTests/StationarityTest/{directory}", data_type)
-    make_directory(f"../StatisticalTests/StationarityTest/{directory}/{data_type}/", "DickeyFuller")
+    make_directory("../StatisticalTests/StationarityTest", quarterly)
+    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}", directory)
+    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}", data_type)
+    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}/{data_type}/", "DickeyFuller")
 
     # Write results to a file
-    df_test_file = open(f"../StatisticalTests/StationarityTest/{directory}/{data_type}/DickeyFuller/{format_column_name(column)}_dickey_fuller.txt", "w")
+    df_test_file = open(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}/{data_type}/DickeyFuller/{format_column_name(column)}_dickey_fuller.txt", "w")
     df_test_file.write(f"""DICKEY-FULLER TEST RESULTS:
     - Model: {directory}
     - Data Type: {data_type}
@@ -159,28 +148,29 @@ def dickey_fuller(data, column, directory, data_type, significance=0.05, autolag
     return stationary
 
 
-def count_stationary_series(stationary_series, non_stationary_series, directory, data_type):
+def count_stationary_series(stationary_series, non_stationary_series, quarterly, directory, data_type):
     """Function to count how many series are stationary. Results are saved in a .txt file"""
-    print(f"Counting stationary series for: {directory}")
+    print(f"Counting stationary series for: {quarterly} - {directory}")
 
     # Make directory for file
-    make_directory("../StatisticalTests/StationarityTest/", directory)
-    make_directory(f"../StatisticalTests/StationarityTest/{directory}", data_type)
+    make_directory(f"../StatisticalTests/StationarityTest/", quarterly)
+    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}", directory)
+    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}", data_type)
 
     # Write file
-    stationary_file = open(f"../StatisticalTests/StationarityTest/{directory}/{data_type}/stationary_series_counts.txt", "w")
+    stationary_file = open(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}/{data_type}/stationary_series_counts.txt", "w")
     stationary_file.write(f"""STATIONARY SERIES COUNT:
 
 - Model: {directory}
 - Data Type: {data_type}
+- Monthly or Quarterly: {quarterly}
 
 - Number of stationary time series: {len(stationary_series)}
-- Stationary time series: {stationary_series} 
+- Stationary time series: {[format_column_name(i, filename=False) for i in stationary_series]} 
 
 - Number of non-stationary time series: {len(non_stationary_series)}
-- Non-stationary time series: {non_stationary_series}
+- Non-stationary time series: {[format_column_name(i, filename=False) for i in non_stationary_series]}
 """
                           )
     stationary_file.close()
-
 

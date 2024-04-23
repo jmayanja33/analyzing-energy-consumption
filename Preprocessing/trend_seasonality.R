@@ -5,19 +5,20 @@ library(rugarch,warn.conflicts=FALSE)
 library(forecast)
 library(MLmetrics)
 
+## Remove trend/seasonality for quarterly data with GDP ##
+
 # Load data
 data <- read.csv("../Data/formatted_data.csv", head=TRUE)
 data$Formatted.Data <- as.Date(data$Formatted.Data, format="%B %d, %Y")
 cols <- names(data)
 num_cols <- length(names(data))
 
-# Initialize dataframe to hold spline model results
-detrended_data <- data
-detrended_data_residuals <- data
-
+# Initialize data frame to hold spline model results
+stationary_data <- head(data, -4)
+# stationary_data_residuals <- data
 
   
-# Iterate through each column and detrend each with a splines model
+# Iterate through each column and remove trend/seasonality with moving averages
 for (i in 1:num_cols){
   column <- cols[i]
   
@@ -26,39 +27,63 @@ for (i in 1:num_cols){
     # Create time series for the data
     ts_column <- ts(data[column], start=c(1973), freq=4)
     
-    # Define time points
-    time_pts = c(1:length(ts_column))
-    time_pts = c(time_pts - min(time_pts))/max(time_pts)
+    # Remove seasonality from data
+    decompose <- decompose(ts_column)
+    ts_column_season_removed <- seasadj(decompose)
     
-    # Fit data with splines and monthly seasonality
-    # quarter <- as.factor(format(data$Formatted.Data,"%B"))
-    # splines_model <- gam(column ~ s(time_pts) + quarter, data=data)
-    splines_model <- gam(ts_column~s(time_pts))
+    # Difference resulting data by 4 quarters (1 year) to remove trend
+    ts_column_trend_season_removed <- diff(ts_column_season_removed, differences=4)
     
     # Save data to dataframe
-    detrended_data[column] <- splines_model$fitted.values
-    detrended_data_residuals[column] <- splines_model$residuals
+    stationary_data[column] <- unclass(ts_column_trend_season_removed)
+    # stationary_data_residuals[column] <- residuals(ts)
   }
 }
 
-data_ts <- ts(data$Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector, 
-              start=c(1973), freq=4)
-
-detrend_ts <- ts(detrended_data$Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector, 
-                 start=c(1973), freq=4)
-
-residual_ts <- ts(detrended_data_residuals$Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector,
-                  start=c(1973), freq=4)
-
-ts.plot(data_ts, col="blue")
-lines(detrend_ts, col="orange")
-
-ts.plot(residual_ts)
-acf(residual_ts)
-
-acf(detrend_ts, lag.max=24*4)
 
 # Save detrended data to a csv file
-write.csv(detrended_data, "../Data/Splines/splines_data.csv", row.names=FALSE)
-write.csv(detrended_data_residuals, "../Data/Splines/splines_data_residuals.csv",
-          row.names=FALSE)
+write.csv(stationary_data, "../Data/MovingAverages/quarterly_moving_averages_data.csv", row.names=FALSE)
+# write.csv(detrended_data_residuals, "../Data/Splines/splines_data_residuals.csv",
+#           row.names=FALSE)
+
+
+## Remove trend/seasonality for monthly data without GDP ##
+
+# Load data
+data <- read.csv("../Data/formatted_data_monthly.csv", head=TRUE)
+data$Formatted.Data <- as.Date(data$Formatted.Data, format="%B %d, %Y")
+cols <- names(data)
+num_cols <- length(names(data))
+
+# Initialize data frame to hold spline model results
+stationary_data <- head(data, -12)
+# stationary_data_residuals <- data
+
+
+# Iterate through each column and remove trend/seasonality with moving averages
+for (i in 1:num_cols){
+  column <- cols[i]
+  
+  if (column != "DATE" & column != "Month" & column != "Quarter" & column != "Formatted Data"){
+    
+    # Create time series for the data
+    ts_column <- ts(data[column], start=c(1973), freq=12)
+    
+    # Remove seasonality from data
+    decompose <- decompose(ts_column)
+    ts_column_season_removed <- seasadj(decompose)
+    
+    # Difference resulting data by 4 quarters (1 year) to remove trend
+    ts_column_trend_season_removed <- diff(ts_column_season_removed, differences=12)
+    
+    # Save data to dataframe
+    stationary_data[column] <- unclass(ts_column_trend_season_removed)
+    # stationary_data_residuals[column] <- residuals(ts)
+  }
+}
+
+
+# Save detrended data to a csv file
+write.csv(stationary_data, "../Data/MovingAverages/monthly_moving_averages_data.csv", row.names=FALSE)
+# write.csv(detrended_data_residuals, "../Data/Splines/splines_data_residuals.csv",
+#          row.names=FALSE)
