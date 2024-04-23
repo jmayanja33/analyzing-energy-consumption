@@ -16,12 +16,20 @@ def make_directory(filepath, directory):
         os.mkdir(dir_path)
 
 
+def format_column_name(column, filename=True):
+    """Function to remove spaces and periods from column names"""
+    if filename:
+        return column.replace(' ', '_').replace('.', '_').lower()
+    else:
+        return column.replace('.', ' ')
+
+
 def save_model(model, model_type, column, data_type):
     """Function to save a model as a pickle file"""
     make_directory("../Models", model_type)
     make_directory(f"../Models/{model_type}", data_type)
 
-    with open(f"../Models/{model_type}/{data_type}/{column.replace(' ', '_').lower()}.pkl", "wb") as pkl_file:
+    with open(f"../Models/{model_type}/{data_type}/{format_column_name(column)}.pkl", "wb") as pkl_file:
         pickle.dump(model, pkl_file)
         pkl_file.close()
 
@@ -53,7 +61,7 @@ def plot_ts(data, column, directory, data_type):
     plt.figure(figsize=(10, 8))
     plt.xlabel("Date")
     plt.ylabel(column)
-    plt.title(f"USA {column} (1973-2022)")
+    plt.title(f"USA {format_column_name(column, filename=False)} (1973-2022)")
 
     # Plot GDP
     x_data = format_as_datetime(data)
@@ -64,7 +72,7 @@ def plot_ts(data, column, directory, data_type):
     make_directory("../Visualizations", directory)
     make_directory(f"../Visualizations/{directory}", "TSPlots")
     make_directory(f"../Visualizations/{directory}/TSPlots", data_type)
-    plt.savefig(f"../Visualizations/{directory}/TSPlots/{data_type}/{column.replace(' ', '_').lower()}.png")
+    plt.savefig(f"../Visualizations/{directory}/TSPlots/{data_type}/{format_column_name(column)}.png")
     plt.clf()
 
 
@@ -76,7 +84,7 @@ def acf(data, column, directory, data_type, lags=None):
         plot_acf(data, lags=len(data)/10)
     else:
         plot_acf(data, lags=lags)
-    plt.title(f"{column} ACF Plot")
+    plt.title(f"{format_column_name(column, filename=False)} ACF Plot")
     plt.xlabel("Lags")
     plt.ylabel("ACF Value")
 
@@ -84,7 +92,7 @@ def acf(data, column, directory, data_type, lags=None):
     make_directory("../Visualizations", directory)
     make_directory(f"../Visualizations/{directory}", "ACF")
     make_directory(f"../Visualizations/{directory}/ACF", data_type)
-    plt.savefig(f"../Visualizations/{directory}/ACF/{data_type}/{column.replace(' ', '_').lower()}.png")
+    plt.savefig(f"../Visualizations/{directory}/ACF/{data_type}/{format_column_name(column)}.png")
 
 
 def pacf(data, column, directory, data_type, lags=None):
@@ -95,18 +103,18 @@ def pacf(data, column, directory, data_type, lags=None):
         plot_pacf(data, lags=len(data)/10)
     else:
         plot_pacf(data, lags=lags)
-    plt.title(f"{column} PACF Plot")
+    plt.title(f"{format_column_name(column, filename=False)} PACF Plot")
     plt.xlabel("Lags")
-    plt.ylabel("ACF Value")
+    plt.ylabel("PACF Value")
 
     # Save figure
     make_directory("../Visualizations", directory)
     make_directory(f"../Visualizations/{directory}", "PACF")
     make_directory(f"../Visualizations/{directory}/PACF", data_type)
-    plt.savefig(f"../Visualizations/{directory}/PACF/{data_type}/{column.replace(' ', '_').lower()}.png")
+    plt.savefig(f"../Visualizations/{directory}/PACF/{data_type}/{format_column_name(column)}.png")
 
 
-def dickey_fuller(data, column, directory, data_type,significance=0.05, autolag="AIC"):
+def dickey_fuller(data, column, directory, data_type, significance=0.05, autolag="AIC"):
     """Function to perform a Dickey-Fuller test for stationarity and save the results to a file"""
     print(f"Performing Dickey-Fuller for: {directory} - {column} ")
 
@@ -128,7 +136,7 @@ def dickey_fuller(data, column, directory, data_type,significance=0.05, autolag=
     make_directory(f"../StatisticalTests/StationarityTest/{directory}/{data_type}/", "DickeyFuller")
 
     # Write results to a file
-    df_test_file = open(f"../StatisticalTests/StationarityTest/{directory}/{data_type}/DickeyFuller/{column.replace(' ', '_').lower()}_dickey_fuller.txt", "w")
+    df_test_file = open(f"../StatisticalTests/StationarityTest/{directory}/{data_type}/DickeyFuller/{format_column_name(column)}_dickey_fuller.txt", "w")
     df_test_file.write(f"""DICKEY-FULLER TEST RESULTS:
     - Model: {directory}
     - Data Type: {data_type}
@@ -174,22 +182,5 @@ def count_stationary_series(stationary_series, non_stationary_series, directory,
 """
                           )
     stationary_file.close()
-
-
-def holt_winters(data, column, data_type, seasonal=None):
-    """Function to smooth data using Holt-Winters"""
-    print(f"Detrending with Holt-Winters for: {data_type} - {column}")
-
-    hw_model = ExponentialSmoothing(np.asarray(data[column]), trend='mul', seasonal=seasonal)
-    hw_model._index = format_as_datetime(data)
-
-    # Fit model to data
-    fit = hw_model.fit()
-    fitted_data = fit._fittedvalues
-
-    # Save model
-    save_model(hw_model, "Holt-Winters", column, data_type)
-
-    return fitted_data
 
 

@@ -13,7 +13,10 @@ def test_stationarity(data, directory, data_type):
 
     # Plot ACFs and perform Dickey-Fuller tests for all columns in the data
     for column in data.columns:
-        if column not in {'DATE', 'Month', 'Quarter'}:
+        if column not in {'DATE', 'Month', 'Quarter', 'Formatted Data'}:
+            # Plot data
+            plot_ts(data, column, directory, data_type)
+
             # Plot ACF
             acf(data[column], column, directory, data_type)
 
@@ -21,7 +24,7 @@ def test_stationarity(data, directory, data_type):
             pacf(data[column], column, directory, data_type)
 
             # Perform Dickey-Fuller test
-            stationary = dickey_fuller(data[column], column, directory, data_type)
+            stationary = dickey_fuller(data[column], format_column_name(column), directory, data_type)
 
             # If GDP is stationary, make the data stationary
             if stationary:
@@ -40,18 +43,13 @@ if __name__ == '__main__':
 
     # Load data
     data = pd.read_csv("../Data/formatted_data.csv")
+    splines = pd.read_csv("../Data/Splines/splines_data.csv")
+    splines_resid = pd.read_csv("../Data/Splines/splines_data_residuals.csv")
 
     # Evaluate stationarity on raw data
-    stationary_series, non_stationary_series = test_stationarity(data, "RawData", "RawData")
+    test_stationarity(data, "RawData", "RawData")
+    test_stationarity(splines, "Splines", "RawData")
+    test_stationarity(splines_resid, "Splines", "Residuals")
 
-    # Detrend each time series
-    detrended_data = data
-    for series in non_stationary_series:
-
-        # Use Holt-Winters to detrend data
-        detrended_data[series] = holt_winters(data, series, "RawData")
-
-    # Evaluate stationarity
-    stationary_series, non_stationary_series = test_stationarity(detrended_data, "HoltWinters", "RawData")
 
 

@@ -1,0 +1,16 @@
+DICKEY-FULLER TEST RESULTS:
+    - Model: Splines
+    - Data Type: RawData
+    - Time Series: end_use_energy_consumed_by_the_commercial_sector
+    
+    - Null Hypothesis: The series is stationary
+    
+    - ADF-Statistic: 951475346609.3177
+    - P-Value: 1.0
+    - Number of Lags: 0
+    - Number of Observations: 199
+    - Critical Values: {'1%': -4.004997848936356, '5%': -3.4327862452981046, '10%': -3.140144918368515}
+    
+** Since the p-value (1.0) is not less than the significance value (0.05), the null hypothesis IS NOT rejected, so the series IS NOT deemed stationary. **
+
+    

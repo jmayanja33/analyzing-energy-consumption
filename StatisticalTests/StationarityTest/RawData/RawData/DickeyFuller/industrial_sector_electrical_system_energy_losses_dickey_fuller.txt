@@ -1,7 +1,7 @@
 DICKEY-FULLER TEST RESULTS:
     - Model: RawData
     - Data Type: RawData
-    - Time Series: Industrial Sector Electrical System Energy Losses
+    - Time Series: industrial_sector_electrical_system_energy_losses
     
     - Null Hypothesis: The series is stationary
     

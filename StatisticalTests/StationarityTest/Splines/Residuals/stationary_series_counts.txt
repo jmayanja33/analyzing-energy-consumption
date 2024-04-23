@@ -1,0 +1,10 @@
+STATIONARY SERIES COUNT:
+
+- Model: Splines
+- Data Type: Residuals
+
+- Number of stationary time series: 8
+- Stationary time series: ['Commercial.Sector.Electrical.System.Energy.Losses', 'Primary.Energy.Consumed.by.the.Industrial.Sector', 'Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector', 'End.Use.Energy.Consumed.by.the.Industrial.Sector', 'Industrial.Sector.Electrical.System.Energy.Losses', 'Total.Energy.Consumed.by.the.Industrial.Sector', 'GDP', 'Formatted.Data'] 
+
+- Number of non-stationary time series: 9
+- Non-stationary time series: ['Primary.Energy.Consumed.by.the.Residential.Sector', 'Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector', 'End.Use.Energy.Consumed.by.the.Residential.Sector', 'Residential.Sector.Electrical.System.Energy.Losses', 'Total.Energy.Consumed.by.the.Residential.Sector', 'Primary.Energy.Consumed.by.the.Commercial.Sector', 'Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector', 'End.Use.Energy.Consumed.by.the.Commercial.Sector', 'Total.Energy.Consumed.by.the.Commercial.Sector']

@@ -1,7 +1,7 @@
 DICKEY-FULLER TEST RESULTS:
     - Model: RawData
     - Data Type: RawData
-    - Time Series: Electricity Sales to Ultimate Customers in the Industrial Sector
+    - Time Series: electricity_sales_to_ultimate_customers_in_the_industrial_sector
     
     - Null Hypothesis: The series is stationary
     

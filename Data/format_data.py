@@ -94,6 +94,7 @@ if __name__ == "__main__":
     df = pd.merge(df, gdp, on='DATE', how='inner')
     df['DATE'] = df['DATE'].apply(lambda x: format_final_date(x))
     df['Month'] = [quarter_dict[i] for i in df['Quarter']]
+    df['Formatted Data'] = df['Month'] + ' 1, ' + df['DATE']
 
     # Save formatted data
     df.to_csv('formatted_data.csv', index=False)
