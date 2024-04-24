@@ -1,0 +1,16 @@
+DICKEY-FULLER TEST RESULTS:
+    - Model: MovingAverages
+    - Data Type: RawData
+    - Time Series: residential_sector_electrical_system_energy_losses
+    
+    - Null Hypothesis: The series is stationary
+    
+    - ADF-Statistic: -9.258558433639156
+    - P-Value: 9.526328697857196e-14
+    - Number of Lags: 15
+    - Number of Observations: 180
+    - Critical Values: {'1%': -4.009965410665295, '5%': -3.4351677801783262, '10%': -3.1415394238683128}
+    
+** Since the p-value (9.526328697857196e-14) is less than the significance value (0.05), the null hypothesis IS rejected, so the series IS deemed stationary. **
+
+    

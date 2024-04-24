@@ -1,0 +1,16 @@
+DICKEY-FULLER TEST RESULTS:
+    - Model: RawData
+    - Data Type: RawData
+    - Time Series: commercial_sector_electrical_system_energy_losses
+    
+    - Null Hypothesis: The series is stationary
+    
+    - ADF-Statistic: -0.334496606171466
+    - P-Value: 0.9886859949908525
+    - Number of Lags: 17
+    - Number of Observations: 582
+    - Critical Values: {'1%': -3.9744097618913123, '5%': -3.4180605493623104, '10%': -3.131504312813997}
+    
+** Since the p-value (0.9886859949908525) is not less than the significance value (0.05), the null hypothesis IS NOT rejected, so the series IS NOT deemed stationary. **
+
+    

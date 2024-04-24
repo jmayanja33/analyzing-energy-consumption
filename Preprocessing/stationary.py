@@ -50,3 +50,4 @@ if __name__ == '__main__':
     test_stationarity(quarterly_ma, "Quarterly", "MovingAverages", "RawData")
     test_stationarity(monthly_data, "Monthly", "RawData", "RawData")
     test_stationarity(monthly_ma, "Monthly", "MovingAverages", "RawData")
+
