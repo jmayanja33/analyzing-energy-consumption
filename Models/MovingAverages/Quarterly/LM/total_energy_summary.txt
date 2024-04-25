@@ -1,6 +1,6 @@
 
 Call:
-lm(formula = Total.Energy ~ Primary.Energy.Consumed.by.the.Residential.Sector + 
+lm(formula = Total.Energy.Consumed ~ Primary.Energy.Consumed.by.the.Residential.Sector + 
     Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector + 
     End.Use.Energy.Consumed.by.the.Residential.Sector + Residential.Sector.Electrical.System.Energy.Losses + 
     Primary.Energy.Consumed.by.the.Commercial.Sector + Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector + 

@@ -97,5 +97,5 @@ if __name__ == "__main__":
     df['Formatted Data'] = df['Month'] + ' 1, ' + df['DATE']
 
     # Save formatted data
-    df['Total Energy'] = df['Primary Energy Consumed by the Residential Sector'] + df['Primary Energy Consumed by the Commercial Sector'] + df['Primary Energy Consumed by the Industrial Sector']
+    df['Total Energy Consumed'] = df['Primary Energy Consumed by the Residential Sector'] + df['Primary Energy Consumed by the Commercial Sector'] + df['Primary Energy Consumed by the Industrial Sector']
     df.to_csv('formatted_data.csv', index=False)

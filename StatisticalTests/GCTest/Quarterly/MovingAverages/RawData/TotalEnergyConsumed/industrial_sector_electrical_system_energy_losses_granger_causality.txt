@@ -1,0 +1,35 @@
+GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: Industrial Sector Electrical System Energy Losses DOES NOT CAUSE Total Energy            
+
+- Lag 1:
+    - SSR Based Test P-Value: 0.4146
+    - SSR Based chi2 Test P-Value: 0.41
+    - Likelihood Ratio Test P-Value: 0.4104
+    - Parameter F Test P-Value: 0.4146
+- Lag 2:
+    - SSR Based Test P-Value: 0.2779
+    - SSR Based chi2 Test P-Value: 0.2662
+    - Likelihood Ratio Test P-Value: 0.2686
+    - Parameter F Test P-Value: 0.2779
+- Lag 3:
+    - SSR Based Test P-Value: 0.4531
+    - SSR Based chi2 Test P-Value: 0.4341
+    - Likelihood Ratio Test P-Value: 0.4374
+    - Parameter F Test P-Value: 0.4531
+- Lag 4:
+    - SSR Based Test P-Value: 0.8513
+    - SSR Based chi2 Test P-Value: 0.8401
+    - Likelihood Ratio Test P-Value: 0.841
+    - Parameter F Test P-Value: 0.8513
+- Lag 5:
+    - SSR Based Test P-Value: 0.6187
+    - SSR Based chi2 Test P-Value: 0.5855
+    - Likelihood Ratio Test P-Value: 0.5909
+    - Parameter F Test P-Value: 0.6187
+RESULT:
+
+    0.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is less than the Causal Threshold set at 80.0.
+    Therefore, the null hypothesis will be ACCEPTED, and it is concluded that Industrial Sector Electrical System Energy Losses DOES NOT CAUSE Total Energy Consumed. 
+    

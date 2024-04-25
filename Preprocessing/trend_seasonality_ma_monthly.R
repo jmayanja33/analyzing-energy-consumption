@@ -142,9 +142,9 @@ test.Total.Energy.Consumed.by.the.Industrial.Sector <- ts(tail(stationary_data$T
                                                           start=c(2021), freq=12)
 
 # Total.Energy
-train.Total.Energy <- ts(head(stationary_data$Total.Energy, -12),
+train.Total.Energy <- ts(head(stationary_data$Total.Energy.Consumed, -12),
                          start=c(1973), freq=12)
-test.Total.Energy <- ts(tail(stationary_data$Total.Energy, 12),
+test.Total.Energy <- ts(tail(stationary_data$Total.Energy.Consumed, 12),
                         start=c(2021), freq=12)
 
 
@@ -193,7 +193,7 @@ writeLines(var_model_sum, glue("../Models/MovingAverages/Monthly/VAR/var_summary
 
 
 # Create linear model for total energy
-total_model <- lm(Total.Energy ~ Primary.Energy.Consumed.by.the.Residential.Sector + 
+total_model <- lm(Total.Energy.Consumed ~ Primary.Energy.Consumed.by.the.Residential.Sector + 
                     Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector + 
                     End.Use.Energy.Consumed.by.the.Residential.Sector + 
                     Residential.Sector.Electrical.System.Energy.Losses + 
