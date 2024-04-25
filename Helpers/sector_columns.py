@@ -21,3 +21,15 @@ industrial_cols = [
     "Industrial Sector Electrical System Energy Losses",
     "Total Energy Consumed by the Industrial Sector"
 ]
+
+consumption_cols = [
+    "Primary Energy Consumed by the Residential Sector",
+    "End-Use Energy Consumed by the Residential Sector",
+    "Total Energy Consumed by the Residential Sector",
+    "Primary Energy Consumed by the Commercial Sector",
+    "End-Use Energy Consumed by the Commercial Sector",
+    "Total Energy Consumed by the Commercial Sector",
+    "Primary Energy Consumed by the Industrial Sector",
+    "End-Use Energy Consumed by the Industrial Sector",
+    "Total Energy Consumed by the Industrial Sector"
+]

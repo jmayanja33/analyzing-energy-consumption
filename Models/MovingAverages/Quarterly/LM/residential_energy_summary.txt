@@ -1,0 +1,38 @@
+
+Call:
+lm(formula = Total.Energy.Consumed.by.the.Residential.Sector ~ 
+    Primary.Energy.Consumed.by.the.Residential.Sector + Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector + 
+        End.Use.Energy.Consumed.by.the.Residential.Sector + Residential.Sector.Electrical.System.Energy.Losses + 
+        Primary.Energy.Consumed.by.the.Commercial.Sector + Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector + 
+        End.Use.Energy.Consumed.by.the.Commercial.Sector + Commercial.Sector.Electrical.System.Energy.Losses + 
+        Primary.Energy.Consumed.by.the.Industrial.Sector + Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector + 
+        Industrial.Sector.Electrical.System.Energy.Losses + Total.Energy.Consumed.by.the.Commercial.Sector + 
+        Total.Energy.Consumed.by.the.Industrial.Sector, data = stationary_data)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-0.0137491 -0.0046441  0.0005188  0.0039080  0.0154836 
+
+Coefficients:
+                                                                    Estimate Std. Error    t value Pr(>|t|)    
+(Intercept)                                                       -3.990e-06  4.411e-04     -0.009 0.992793    
+Primary.Energy.Consumed.by.the.Residential.Sector                  2.301e-01  6.789e-02      3.389 0.000859 ***
+Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector  2.301e-01  6.789e-02      3.389 0.000859 ***
+End.Use.Energy.Consumed.by.the.Residential.Sector                  7.699e-01  6.789e-02     11.340  < 2e-16 ***
+Residential.Sector.Electrical.System.Energy.Losses                 1.000e+00  4.456e-06 224405.347  < 2e-16 ***
+Primary.Energy.Consumed.by.the.Commercial.Sector                   7.479e-02  6.930e-02      1.079 0.281912    
+Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector   7.476e-02  6.930e-02      1.079 0.282103    
+End.Use.Energy.Consumed.by.the.Commercial.Sector                   1.391e-01  7.194e-02      1.933 0.054787 .  
+Commercial.Sector.Electrical.System.Energy.Losses                  2.139e-01  7.997e-02      2.674 0.008166 ** 
+Primary.Energy.Consumed.by.the.Industrial.Sector                   5.616e-02  6.089e-02      0.922 0.357588    
+Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector   5.619e-02  6.089e-02      0.923 0.357319    
+Industrial.Sector.Electrical.System.Energy.Losses                  5.615e-02  6.089e-02      0.922 0.357700    
+Total.Energy.Consumed.by.the.Commercial.Sector                    -2.139e-01  7.996e-02     -2.674 0.008169 ** 
+Total.Energy.Consumed.by.the.Industrial.Sector                    -5.616e-02  6.089e-02     -0.922 0.357586    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.006174 on 182 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:      1 
+F-statistic: 1.283e+12 on 13 and 182 DF,  p-value: < 2.2e-16
+
