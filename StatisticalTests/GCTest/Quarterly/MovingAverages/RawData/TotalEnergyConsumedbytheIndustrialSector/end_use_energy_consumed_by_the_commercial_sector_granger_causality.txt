@@ -30,6 +30,6 @@ Null Hypothesis: End Use Energy Consumed by the Commercial Sector DOES NOT CAUSE
 RESULT:
                 
     60.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is greater than the Causal Threshold set at 80.0 %.
+    This number is greater than/equal to the Causal Threshold set at 80.0 %.
     Therefore, the null hypothesis will be REJECTED, and it is concluded that End Use Energy Consumed by the Commercial Sector CAUSES Total Energy Consumed by the Industrial Sector.
     

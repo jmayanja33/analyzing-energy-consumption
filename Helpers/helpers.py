@@ -248,7 +248,7 @@ Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Tot
                     hypothesis_content = f"""\nRESULT:
                 
     {significant_percent} % of the P-Values are lower than the significance level of {significance}.
-    This number is greater than the Causal Threshold set at {threshold*100} %.
+    This number is greater than/equal to the Causal Threshold set at {threshold*100} %.
     Therefore, the null hypothesis will be REJECTED, and it is concluded that {format_column_name(column, filename=False)} CAUSES {format_column_name(target, filename=False)}.
     """
 
