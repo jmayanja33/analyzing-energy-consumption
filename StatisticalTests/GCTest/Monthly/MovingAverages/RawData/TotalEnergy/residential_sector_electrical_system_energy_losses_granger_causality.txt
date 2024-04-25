@@ -1,0 +1,35 @@
+GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: Residential Sector Electrical System Energy Losses DOES NOT CAUSE Total Energy            
+
+- Lag 1:
+    - SSR Based Test P-Value: 0.9429
+    - SSR Based chi2 Test P-Value: 0.9427
+    - Likelihood Ratio Test P-Value: 0.9427
+    - Parameter F Test P-Value: 0.9429
+- Lag 2:
+    - SSR Based Test P-Value: 0.431
+    - SSR Based chi2 Test P-Value: 0.4274
+    - Likelihood Ratio Test P-Value: 0.4279
+    - Parameter F Test P-Value: 0.431
+- Lag 3:
+    - SSR Based Test P-Value: 0.0135
+    - SSR Based chi2 Test P-Value: 0.0122
+    - Likelihood Ratio Test P-Value: 0.0128
+    - Parameter F Test P-Value: 0.0135
+- Lag 4:
+    - SSR Based Test P-Value: 0.0036
+    - SSR Based chi2 Test P-Value: 0.003
+    - Likelihood Ratio Test P-Value: 0.0033
+    - Parameter F Test P-Value: 0.0036
+- Lag 5:
+    - SSR Based Test P-Value: 0.442
+    - SSR Based chi2 Test P-Value: 0.4295
+    - Likelihood Ratio Test P-Value: 0.432
+    - Parameter F Test P-Value: 0.442
+RESULT:
+                
+    40.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is greater than the Causal Threshold set at 80.0 %.
+    Therefore, the null hypothesis will be REJECTED, and it is concluded that Residential Sector Electrical System Energy Losses CAUSES Total Energy.
+    

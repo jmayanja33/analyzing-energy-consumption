@@ -1,0 +1,35 @@
+GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: Primary Energy Consumed by the Residential Sector DOES NOT CAUSE Total Energy            
+
+- Lag 1:
+    - SSR Based Test P-Value: 0.0064
+    - SSR Based chi2 Test P-Value: 0.0061
+    - Likelihood Ratio Test P-Value: 0.0062
+    - Parameter F Test P-Value: 0.0064
+- Lag 2:
+    - SSR Based Test P-Value: 0.5549
+    - SSR Based chi2 Test P-Value: 0.5518
+    - Likelihood Ratio Test P-Value: 0.5521
+    - Parameter F Test P-Value: 0.5549
+- Lag 3:
+    - SSR Based Test P-Value: 0.0005
+    - SSR Based chi2 Test P-Value: 0.0004
+    - Likelihood Ratio Test P-Value: 0.0004
+    - Parameter F Test P-Value: 0.0005
+- Lag 4:
+    - SSR Based Test P-Value: 0.0424
+    - SSR Based chi2 Test P-Value: 0.0386
+    - Likelihood Ratio Test P-Value: 0.0401
+    - Parameter F Test P-Value: 0.0424
+- Lag 5:
+    - SSR Based Test P-Value: 0.3184
+    - SSR Based chi2 Test P-Value: 0.3058
+    - Likelihood Ratio Test P-Value: 0.3088
+    - Parameter F Test P-Value: 0.3184
+RESULT:
+                
+    60.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is greater than the Causal Threshold set at 80.0 %.
+    Therefore, the null hypothesis will be REJECTED, and it is concluded that Primary Energy Consumed by the Residential Sector CAUSES Total Energy Consumed by the Commercial Sector.
+    

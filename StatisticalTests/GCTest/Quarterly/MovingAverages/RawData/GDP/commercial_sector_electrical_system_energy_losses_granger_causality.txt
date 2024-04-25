@@ -1,0 +1,35 @@
+GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: Commercial Sector Electrical System Energy Losses DOES NOT CAUSE Total Energy            
+
+- Lag 1:
+    - SSR Based Test P-Value: 0.3478
+    - SSR Based chi2 Test P-Value: 0.3429
+    - Likelihood Ratio Test P-Value: 0.3434
+    - Parameter F Test P-Value: 0.3478
+- Lag 2:
+    - SSR Based Test P-Value: 0.1999
+    - SSR Based chi2 Test P-Value: 0.1889
+    - Likelihood Ratio Test P-Value: 0.1916
+    - Parameter F Test P-Value: 0.1999
+- Lag 3:
+    - SSR Based Test P-Value: 0.557
+    - SSR Based chi2 Test P-Value: 0.54
+    - Likelihood Ratio Test P-Value: 0.5424
+    - Parameter F Test P-Value: 0.557
+- Lag 4:
+    - SSR Based Test P-Value: 0.4662
+    - SSR Based chi2 Test P-Value: 0.4381
+    - Likelihood Ratio Test P-Value: 0.4433
+    - Parameter F Test P-Value: 0.4662
+- Lag 5:
+    - SSR Based Test P-Value: 0.8156
+    - SSR Based chi2 Test P-Value: 0.7963
+    - Likelihood Ratio Test P-Value: 0.7984
+    - Parameter F Test P-Value: 0.8156
+RESULT:
+
+    0.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is less than the Causal Threshold set at 80.0.
+    Therefore, the null hypothesis will be ACCEPTED, and it is concluded that Commercial Sector Electrical System Energy Losses DOES NOT CAUSE GDP. 
+    

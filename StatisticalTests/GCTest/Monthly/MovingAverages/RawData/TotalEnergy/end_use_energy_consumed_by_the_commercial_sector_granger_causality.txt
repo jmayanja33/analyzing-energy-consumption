@@ -1,0 +1,35 @@
+GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: End Use Energy Consumed by the Commercial Sector DOES NOT CAUSE Total Energy            
+
+- Lag 1:
+    - SSR Based Test P-Value: 0.4074
+    - SSR Based chi2 Test P-Value: 0.4058
+    - Likelihood Ratio Test P-Value: 0.406
+    - Parameter F Test P-Value: 0.4074
+- Lag 2:
+    - SSR Based Test P-Value: 0.2454
+    - SSR Based chi2 Test P-Value: 0.2416
+    - Likelihood Ratio Test P-Value: 0.2424
+    - Parameter F Test P-Value: 0.2454
+- Lag 3:
+    - SSR Based Test P-Value: 0.9358
+    - SSR Based chi2 Test P-Value: 0.9347
+    - Likelihood Ratio Test P-Value: 0.9348
+    - Parameter F Test P-Value: 0.9358
+- Lag 4:
+    - SSR Based Test P-Value: 0.7737
+    - SSR Based chi2 Test P-Value: 0.7686
+    - Likelihood Ratio Test P-Value: 0.7691
+    - Parameter F Test P-Value: 0.7737
+- Lag 5:
+    - SSR Based Test P-Value: 0.7891
+    - SSR Based chi2 Test P-Value: 0.7823
+    - Likelihood Ratio Test P-Value: 0.7831
+    - Parameter F Test P-Value: 0.7891
+RESULT:
+
+    0.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is less than the Causal Threshold set at 80.0.
+    Therefore, the null hypothesis will be ACCEPTED, and it is concluded that End Use Energy Consumed by the Commercial Sector DOES NOT CAUSE Total Energy. 
+    

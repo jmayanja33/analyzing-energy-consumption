@@ -1,0 +1,35 @@
+GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: End Use Energy Consumed by the Industrial Sector DOES NOT CAUSE Total Energy            
+
+- Lag 1:
+    - SSR Based Test P-Value: 0.7794
+    - SSR Based chi2 Test P-Value: 0.7787
+    - Likelihood Ratio Test P-Value: 0.7787
+    - Parameter F Test P-Value: 0.7794
+- Lag 2:
+    - SSR Based Test P-Value: 0.0841
+    - SSR Based chi2 Test P-Value: 0.0815
+    - Likelihood Ratio Test P-Value: 0.0823
+    - Parameter F Test P-Value: 0.0841
+- Lag 3:
+    - SSR Based Test P-Value: 0.2832
+    - SSR Based chi2 Test P-Value: 0.2768
+    - Likelihood Ratio Test P-Value: 0.2782
+    - Parameter F Test P-Value: 0.2832
+- Lag 4:
+    - SSR Based Test P-Value: 0.2386
+    - SSR Based chi2 Test P-Value: 0.2297
+    - Likelihood Ratio Test P-Value: 0.232
+    - Parameter F Test P-Value: 0.2386
+- Lag 5:
+    - SSR Based Test P-Value: 0.7245
+    - SSR Based chi2 Test P-Value: 0.7161
+    - Likelihood Ratio Test P-Value: 0.7173
+    - Parameter F Test P-Value: 0.7245
+RESULT:
+
+    0.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is less than the Causal Threshold set at 80.0.
+    Therefore, the null hypothesis will be ACCEPTED, and it is concluded that End Use Energy Consumed by the Industrial Sector DOES NOT CAUSE Total Energy Consumed by the Industrial Sector. 
+    

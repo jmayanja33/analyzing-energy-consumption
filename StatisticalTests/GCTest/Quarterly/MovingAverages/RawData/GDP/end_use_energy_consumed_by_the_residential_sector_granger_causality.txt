@@ -1,0 +1,35 @@
+GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: End Use Energy Consumed by the Residential Sector DOES NOT CAUSE Total Energy            
+
+- Lag 1:
+    - SSR Based Test P-Value: 0.0066
+    - SSR Based chi2 Test P-Value: 0.0056
+    - Likelihood Ratio Test P-Value: 0.0061
+    - Parameter F Test P-Value: 0.0066
+- Lag 2:
+    - SSR Based Test P-Value: 0.0127
+    - SSR Based chi2 Test P-Value: 0.0102
+    - Likelihood Ratio Test P-Value: 0.0114
+    - Parameter F Test P-Value: 0.0127
+- Lag 3:
+    - SSR Based Test P-Value: 0.0237
+    - SSR Based chi2 Test P-Value: 0.0181
+    - Likelihood Ratio Test P-Value: 0.0203
+    - Parameter F Test P-Value: 0.0237
+- Lag 4:
+    - SSR Based Test P-Value: 0.1087
+    - SSR Based chi2 Test P-Value: 0.0893
+    - Likelihood Ratio Test P-Value: 0.0954
+    - Parameter F Test P-Value: 0.1087
+- Lag 5:
+    - SSR Based Test P-Value: 0.1535
+    - SSR Based chi2 Test P-Value: 0.1233
+    - Likelihood Ratio Test P-Value: 0.1321
+    - Parameter F Test P-Value: 0.1535
+RESULT:
+                
+    60.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is greater than the Causal Threshold set at 80.0 %.
+    Therefore, the null hypothesis will be REJECTED, and it is concluded that End Use Energy Consumed by the Residential Sector CAUSES GDP.
+    

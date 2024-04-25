@@ -1,12 +1,33 @@
 from datetime import datetime
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.stattools import adfuller
-from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from statsmodels.tsa.stattools import grangercausalitytests
 from matplotlib import pyplot as plt
+# from sector_columns import *
 import pandas as pd
 import numpy as np
 import pickle
 import os
+
+
+predictor_cols = [
+    "Primary.Energy.Consumed.by.the.Residential.Sector",
+    "Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector",
+    "End.Use.Energy.Consumed.by.the.Residential.Sector",
+    "Residential.Sector.Electrical.System.Energy.Losses",
+    "Total.Energy.Consumed.by.the.Residential.Sector",
+    "Primary.Energy.Consumed.by.the.Commercial.Sector",
+    "Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector",
+    "End.Use.Energy.Consumed.by.the.Commercial.Sector",
+    "Commercial.Sector.Electrical.System.Energy.Losses",
+    "Total.Energy.Consumed.by.the.Commercial.Sector",
+    "Primary.Energy.Consumed.by.the.Industrial.Sector",
+    "Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector",
+    "End.Use.Energy.Consumed.by.the.Industrial.Sector",
+    "Industrial.Sector.Electrical.System.Energy.Losses",
+    "Total.Energy.Consumed.by.the.Industrial.Sector"
+
+]
 
 
 def make_directory(filepath, directory):
@@ -22,6 +43,11 @@ def format_column_name(column, filename=True):
         return column.replace(' ', '_').replace('.', '_').lower()
     else:
         return column.replace('.', ' ')
+
+
+def format_dir_name(column):
+    """Function to format column name for directories"""
+    return column.replace(' ', '').replace('.', '')
 
 
 def format_as_datetime(df):
@@ -174,3 +200,77 @@ def count_stationary_series(stationary_series, non_stationary_series, quarterly,
                           )
     stationary_file.close()
 
+
+def granger_causality(data, quarterly, directory, data_type, target_cols, significance=0.05, threshold=0.8, maxlag=5):
+    """Function to perform a granger causality test"""
+    for target in target_cols:
+        for column in predictor_cols:
+            if column not in {'DATE', 'Month', 'Quarter', 'Formatted.Data'} and column != target:
+
+                print(f"Performing granger causality test for: {quarterly} - {directory} - {format_column_name(column, filename=False)}")
+
+                gc_test = grangercausalitytests(data[[target, column]], maxlag=maxlag)
+
+                content = f"""GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Total Energy            
+"""
+                p_values = []
+
+                # Add statistics to file
+                for item in gc_test:
+                    # Get and save P-Values
+                    ssr_f_test_p = round(gc_test[item][0]['ssr_ftest'][1], 4)
+                    ssr_chi2_p = round(gc_test[item][0]['ssr_chi2test'][1], 4)
+                    lrtest_p = round(gc_test[item][0]['lrtest'][1], 4)
+                    params_ftest_p = round(gc_test[item][0]['params_ftest'][1], 4)
+
+                    p_values.append(ssr_f_test_p)
+                    p_values.append(ssr_chi2_p)
+                    p_values.append(lrtest_p)
+                    p_values.append(params_ftest_p)
+
+                    # Write to file
+                    lag_content = f"""\n- Lag {item}:
+    - SSR Based Test P-Value: {ssr_f_test_p}
+    - SSR Based chi2 Test P-Value: {ssr_chi2_p}
+    - Likelihood Ratio Test P-Value: {lrtest_p}
+    - Parameter F Test P-Value: {params_ftest_p}"""
+
+                    content += lag_content
+
+                # Determine if null hypothesis is accepted or not
+                num_significant = len([j for j in p_values if j < significance])
+                significant_percent = round(num_significant / len(p_values), 4) * 100
+
+
+                if significant_percent >= threshold:
+                    hypothesis_content = f"""\nRESULT:
+                
+    {significant_percent} % of the P-Values are lower than the significance level of {significance}.
+    This number is greater than the Causal Threshold set at {threshold*100} %.
+    Therefore, the null hypothesis will be REJECTED, and it is concluded that {format_column_name(column, filename=False)} CAUSES {format_column_name(target, filename=False)}.
+    """
+
+                else:
+                    hypothesis_content = f"""\nRESULT:
+
+    {significant_percent} % of the P-Values are lower than the significance level of {significance}.
+    This number is less than the Causal Threshold set at {threshold * 100}.
+    Therefore, the null hypothesis will be ACCEPTED, and it is concluded that {format_column_name(column, filename=False)} DOES NOT CAUSE {format_column_name(target, filename=False)}. 
+    """
+
+                # Write to file
+                content += hypothesis_content
+
+                # Make directories to save test results
+                make_directory(f"../StatisticalTests", "GCTest")
+                make_directory(f"../StatisticalTests/GCTest", quarterly)
+                make_directory(f"../StatisticalTests/GCTest/{quarterly}", directory)
+                make_directory(f"../StatisticalTests/GCTest/{quarterly}/{directory}", data_type)
+                make_directory(f"../StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}", format_dir_name(target))
+
+                # Write file
+                gc_file = open(f"../StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}/{format_dir_name(target)}/{format_column_name(column)}_granger_causality.txt", "w")
+                gc_file.write(content)
+                gc_file.close()

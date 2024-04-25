@@ -1,0 +1,35 @@
+GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: Electricity Sales to Ultimate Customers in the Commercial Sector DOES NOT CAUSE Total Energy            
+
+- Lag 1:
+    - SSR Based Test P-Value: 0.5771
+    - SSR Based chi2 Test P-Value: 0.5735
+    - Likelihood Ratio Test P-Value: 0.5737
+    - Parameter F Test P-Value: 0.5771
+- Lag 2:
+    - SSR Based Test P-Value: 0.0069
+    - SSR Based chi2 Test P-Value: 0.0053
+    - Likelihood Ratio Test P-Value: 0.006
+    - Parameter F Test P-Value: 0.0069
+- Lag 3:
+    - SSR Based Test P-Value: 0.0461
+    - SSR Based chi2 Test P-Value: 0.0375
+    - Likelihood Ratio Test P-Value: 0.0407
+    - Parameter F Test P-Value: 0.0461
+- Lag 4:
+    - SSR Based Test P-Value: 0.0842
+    - SSR Based chi2 Test P-Value: 0.0674
+    - Likelihood Ratio Test P-Value: 0.0729
+    - Parameter F Test P-Value: 0.0842
+- Lag 5:
+    - SSR Based Test P-Value: 0.2918
+    - SSR Based chi2 Test P-Value: 0.2534
+    - Likelihood Ratio Test P-Value: 0.2628
+    - Parameter F Test P-Value: 0.2918
+RESULT:
+                
+    40.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is greater than the Causal Threshold set at 80.0 %.
+    Therefore, the null hypothesis will be REJECTED, and it is concluded that Electricity Sales to Ultimate Customers in the Commercial Sector CAUSES GDP.
+    

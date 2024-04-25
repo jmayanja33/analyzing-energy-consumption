@@ -1,0 +1,35 @@
+GRANGER CAUSALITY TEST RESULTS
+
+Null Hypothesis: Electricity Sales to Ultimate Customers in the Industrial Sector DOES NOT CAUSE Total Energy            
+
+- Lag 1:
+    - SSR Based Test P-Value: 0.5613
+    - SSR Based chi2 Test P-Value: 0.5576
+    - Likelihood Ratio Test P-Value: 0.5577
+    - Parameter F Test P-Value: 0.5613
+- Lag 2:
+    - SSR Based Test P-Value: 0.355
+    - SSR Based chi2 Test P-Value: 0.3434
+    - Likelihood Ratio Test P-Value: 0.3454
+    - Parameter F Test P-Value: 0.355
+- Lag 3:
+    - SSR Based Test P-Value: 0.8952
+    - SSR Based chi2 Test P-Value: 0.8901
+    - Likelihood Ratio Test P-Value: 0.8903
+    - Parameter F Test P-Value: 0.8952
+- Lag 4:
+    - SSR Based Test P-Value: 0.7692
+    - SSR Based chi2 Test P-Value: 0.753
+    - Likelihood Ratio Test P-Value: 0.7547
+    - Parameter F Test P-Value: 0.7692
+- Lag 5:
+    - SSR Based Test P-Value: 0.5604
+    - SSR Based chi2 Test P-Value: 0.5245
+    - Likelihood Ratio Test P-Value: 0.5309
+    - Parameter F Test P-Value: 0.5604
+RESULT:
+
+    0.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is less than the Causal Threshold set at 80.0.
+    Therefore, the null hypothesis will be ACCEPTED, and it is concluded that Electricity Sales to Ultimate Customers in the Industrial Sector DOES NOT CAUSE Total Energy. 
+    
