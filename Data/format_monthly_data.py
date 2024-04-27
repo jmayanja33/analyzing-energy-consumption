@@ -1,3 +1,8 @@
+"""
+Script to format/translate the months in Energy Consumption_r.csv into English,
+then join the two datasets into a single csv file.
+"""
+
 import pandas as pd
 
 month_dict = {
