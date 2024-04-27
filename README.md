@@ -6,7 +6,7 @@ This repository holds all code used for the project, which was mainly in python 
 
 ## Dependencies
 
-This repository requires python 3.10.x and all libraries specified in the requirements.txt file. R 4.2.2 is also required.
+This repository requires python 3.10.x and all libraries specified in the requirements.txt file. R 4.2.x is also required.
 
 ## Code Description
 
