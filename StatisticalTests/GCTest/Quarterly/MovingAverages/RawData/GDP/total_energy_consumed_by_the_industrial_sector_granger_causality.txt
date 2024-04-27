@@ -1,6 +1,6 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: Total Energy Consumed by the Industrial Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: Total Energy Consumed by the Industrial Sector DOES NOT CAUSE GDP       
 
 - Lag 1:
     - SSR Based Test P-Value: 0.0688
@@ -22,14 +22,9 @@ Null Hypothesis: Total Energy Consumed by the Industrial Sector DOES NOT CAUSE T
     - SSR Based chi2 Test P-Value: 0.9324
     - Likelihood Ratio Test P-Value: 0.9326
     - Parameter F Test P-Value: 0.9374
-- Lag 5:
-    - SSR Based Test P-Value: 0.9417
-    - SSR Based chi2 Test P-Value: 0.9348
-    - Likelihood Ratio Test P-Value: 0.9353
-    - Parameter F Test P-Value: 0.9417
 RESULT:
 
     0.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is less than the Causal Threshold set at 80.0.
+    This number is less than the Causal Threshold set at 50.0.
     Therefore, the null hypothesis will be ACCEPTED, and it is concluded that Total Energy Consumed by the Industrial Sector DOES NOT CAUSE GDP. 
     

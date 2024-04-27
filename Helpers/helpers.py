@@ -201,8 +201,10 @@ def count_stationary_series(stationary_series, non_stationary_series, quarterly,
     stationary_file.close()
 
 
-def granger_causality(data, quarterly, directory, data_type, target_cols, significance=0.05, threshold=0.8, maxlag=5):
+def granger_causality(data, quarterly, directory, data_type, target_cols, significance=0.05, threshold=0.5, maxlag=4):
     """Function to perform a granger causality test"""
+    causal_cols = []
+    non_causal_cols = []
     for target in target_cols:
         for column in predictor_cols:
             if column not in {'DATE', 'Month', 'Quarter', 'Formatted.Data'} and column != target:
@@ -213,7 +215,7 @@ def granger_causality(data, quarterly, directory, data_type, target_cols, signif
 
                 content = f"""GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Total Energy            
+Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE {format_column_name(target, filename=False)}       
 """
                 p_values = []
 
@@ -244,15 +246,16 @@ Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Tot
                 significant_percent = round(num_significant / len(p_values), 4) * 100
 
 
-                if significant_percent >= threshold:
+                if significant_percent >= threshold*100:
+                    causal_cols.append((format_column_name(column, filename=False), significant_percent))
                     hypothesis_content = f"""\nRESULT:
                 
     {significant_percent} % of the P-Values are lower than the significance level of {significance}.
     This number is greater than/equal to the Causal Threshold set at {threshold*100} %.
     Therefore, the null hypothesis will be REJECTED, and it is concluded that {format_column_name(column, filename=False)} CAUSES {format_column_name(target, filename=False)}.
     """
-
                 else:
+                    non_causal_cols.append((format_column_name(column, filename=False), significant_percent))
                     hypothesis_content = f"""\nRESULT:
 
     {significant_percent} % of the P-Values are lower than the significance level of {significance}.
@@ -274,3 +277,20 @@ Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Tot
                 gc_file = open(f"../StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}/{format_dir_name(target)}/{format_column_name(column)}_granger_causality.txt", "w")
                 gc_file.write(content)
                 gc_file.close()
+
+            causal_summary_file = open(f"../StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}/{format_dir_name(target)}/granger_causality_summary.txt", "w")
+            causal_content = f"""SUMMARY OF GRANGER CAUSALITY TESTS:
+    
+- NUM. CAUSAL VARIABLES: {len(causal_cols)}
+- CAUSAL VARIABLES:"""
+
+            for i in causal_cols:
+                causal_content += f"\n\t- {i[0]}: {i[1]} % p-values lower than threshold of {threshold}"
+
+            causal_content += f"\n\n- NUM. NON-CAUSAL VARIABLES: {len(non_causal_cols)}"
+
+            for i in non_causal_cols:
+                causal_content += f"\n\t- {i[0]}: {i[1]} % p-values lower than threshold of {threshold}"
+
+            causal_summary_file.write(causal_content)
+            causal_summary_file.close()

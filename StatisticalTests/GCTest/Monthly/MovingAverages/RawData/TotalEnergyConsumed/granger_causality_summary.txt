@@ -1,0 +1,21 @@
+SUMMARY OF GRANGER CAUSALITY TESTS:
+    
+- NUM. CAUSAL VARIABLES: 7
+- CAUSAL VARIABLES:
+	- Electricity Sales to Ultimate Customers in the Residential Sector: 100.0 % p-values lower than threshold of 0.5
+	- End Use Energy Consumed by the Residential Sector: 75.0 % p-values lower than threshold of 0.5
+	- Residential Sector Electrical System Energy Losses: 75.0 % p-values lower than threshold of 0.5
+	- Total Energy Consumed by the Residential Sector: 100.0 % p-values lower than threshold of 0.5
+	- Commercial Sector Electrical System Energy Losses: 100.0 % p-values lower than threshold of 0.5
+	- Total Energy Consumed by the Commercial Sector: 75.0 % p-values lower than threshold of 0.5
+	- Industrial Sector Electrical System Energy Losses: 100.0 % p-values lower than threshold of 0.5
+
+- NUM. NON-CAUSAL VARIABLES: 8
+	- Primary Energy Consumed by the Residential Sector: 0.0 % p-values lower than threshold of 0.5
+	- Primary Energy Consumed by the Commercial Sector: 0.0 % p-values lower than threshold of 0.5
+	- Electricity Sales to Ultimate Customers in the Commercial Sector: 25.0 % p-values lower than threshold of 0.5
+	- End Use Energy Consumed by the Commercial Sector: 0.0 % p-values lower than threshold of 0.5
+	- Primary Energy Consumed by the Industrial Sector: 0.0 % p-values lower than threshold of 0.5
+	- Electricity Sales to Ultimate Customers in the Industrial Sector: 0.0 % p-values lower than threshold of 0.5
+	- End Use Energy Consumed by the Industrial Sector: 0.0 % p-values lower than threshold of 0.5
+	- Total Energy Consumed by the Industrial Sector: 25.0 % p-values lower than threshold of 0.5

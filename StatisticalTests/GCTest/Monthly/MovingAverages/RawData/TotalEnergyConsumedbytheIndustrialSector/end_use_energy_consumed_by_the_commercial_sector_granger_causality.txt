@@ -1,6 +1,6 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: End Use Energy Consumed by the Commercial Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: End Use Energy Consumed by the Commercial Sector DOES NOT CAUSE Total Energy Consumed by the Industrial Sector       
 
 - Lag 1:
     - SSR Based Test P-Value: 0.4901
@@ -22,14 +22,9 @@ Null Hypothesis: End Use Energy Consumed by the Commercial Sector DOES NOT CAUSE
     - SSR Based chi2 Test P-Value: 0.1459
     - Likelihood Ratio Test P-Value: 0.1481
     - Parameter F Test P-Value: 0.1535
-- Lag 5:
-    - SSR Based Test P-Value: 0.0663
-    - SSR Based chi2 Test P-Value: 0.0599
-    - Likelihood Ratio Test P-Value: 0.0621
-    - Parameter F Test P-Value: 0.0663
 RESULT:
-                
-    20.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is greater than/equal to the Causal Threshold set at 80.0 %.
-    Therefore, the null hypothesis will be REJECTED, and it is concluded that End Use Energy Consumed by the Commercial Sector CAUSES Total Energy Consumed by the Industrial Sector.
+
+    25.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is less than the Causal Threshold set at 50.0.
+    Therefore, the null hypothesis will be ACCEPTED, and it is concluded that End Use Energy Consumed by the Commercial Sector DOES NOT CAUSE Total Energy Consumed by the Industrial Sector. 
     

@@ -1,35 +1,30 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: Primary Energy Consumed by the Residential Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: Primary Energy Consumed by the Residential Sector DOES NOT CAUSE Total Energy Consumed       
 
 - Lag 1:
-    - SSR Based Test P-Value: 0.3952
-    - SSR Based chi2 Test P-Value: 0.3904
-    - Likelihood Ratio Test P-Value: 0.3909
-    - Parameter F Test P-Value: 0.3952
+    - SSR Based Test P-Value: 0.4381
+    - SSR Based chi2 Test P-Value: 0.4336
+    - Likelihood Ratio Test P-Value: 0.4339
+    - Parameter F Test P-Value: 0.4381
 - Lag 2:
-    - SSR Based Test P-Value: 0.1056
-    - SSR Based chi2 Test P-Value: 0.0968
-    - Likelihood Ratio Test P-Value: 0.0996
-    - Parameter F Test P-Value: 0.1056
+    - SSR Based Test P-Value: 0.0
+    - SSR Based chi2 Test P-Value: 0.0
+    - Likelihood Ratio Test P-Value: 0.0
+    - Parameter F Test P-Value: 0.0
 - Lag 3:
-    - SSR Based Test P-Value: 0.0097
-    - SSR Based chi2 Test P-Value: 0.0068
-    - Likelihood Ratio Test P-Value: 0.0081
-    - Parameter F Test P-Value: 0.0097
+    - SSR Based Test P-Value: 0.0
+    - SSR Based chi2 Test P-Value: 0.0
+    - Likelihood Ratio Test P-Value: 0.0
+    - Parameter F Test P-Value: 0.0
 - Lag 4:
-    - SSR Based Test P-Value: 0.0304
-    - SSR Based chi2 Test P-Value: 0.0217
-    - Likelihood Ratio Test P-Value: 0.025
-    - Parameter F Test P-Value: 0.0304
-- Lag 5:
-    - SSR Based Test P-Value: 0.2839
-    - SSR Based chi2 Test P-Value: 0.2458
-    - Likelihood Ratio Test P-Value: 0.2552
-    - Parameter F Test P-Value: 0.2839
+    - SSR Based Test P-Value: 0.0
+    - SSR Based chi2 Test P-Value: 0.0
+    - Likelihood Ratio Test P-Value: 0.0
+    - Parameter F Test P-Value: 0.0
 RESULT:
                 
-    40.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is greater than/equal to the Causal Threshold set at 80.0 %.
+    75.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is greater than/equal to the Causal Threshold set at 50.0 %.
     Therefore, the null hypothesis will be REJECTED, and it is concluded that Primary Energy Consumed by the Residential Sector CAUSES Total Energy Consumed.
     

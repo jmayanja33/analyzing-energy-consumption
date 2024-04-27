@@ -5,12 +5,12 @@ DICKEY-FULLER TEST RESULTS:
     
     - Null Hypothesis: The series is stationary
     
-    - ADF-Statistic: -8.251312234039826
-    - P-Value: 1.8763889882681224e-11
-    - Number of Lags: 15
-    - Number of Observations: 180
-    - Critical Values: {'1%': -4.009965410665295, '5%': -3.4351677801783262, '10%': -3.1415394238683128}
+    - ADF-Statistic: -9.267541605105276
+    - P-Value: 9.096619818784369e-14
+    - Number of Lags: 14
+    - Number of Observations: 181
+    - Critical Values: {'1%': -4.0096774902428285, '5%': -3.435029821283931, '10%': -3.1414586641558206}
     
-** Since the p-value (1.8763889882681224e-11) is less than the significance value (0.05), the null hypothesis IS rejected, so the series IS deemed stationary. **
+** Since the p-value (9.096619818784369e-14) is less than the significance value (0.05), the null hypothesis IS rejected, so the series IS deemed stationary. **
 
     

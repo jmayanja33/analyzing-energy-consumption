@@ -1,35 +1,30 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: Primary Energy Consumed by the Industrial Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: Primary Energy Consumed by the Industrial Sector DOES NOT CAUSE Total Energy Consumed       
 
 - Lag 1:
-    - SSR Based Test P-Value: 0.859
-    - SSR Based chi2 Test P-Value: 0.8586
-    - Likelihood Ratio Test P-Value: 0.8586
-    - Parameter F Test P-Value: 0.859
+    - SSR Based Test P-Value: 0.5106
+    - SSR Based chi2 Test P-Value: 0.5092
+    - Likelihood Ratio Test P-Value: 0.5093
+    - Parameter F Test P-Value: 0.5106
 - Lag 2:
-    - SSR Based Test P-Value: 0.3391
-    - SSR Based chi2 Test P-Value: 0.3353
-    - Likelihood Ratio Test P-Value: 0.336
-    - Parameter F Test P-Value: 0.3391
+    - SSR Based Test P-Value: 0.4003
+    - SSR Based chi2 Test P-Value: 0.3966
+    - Likelihood Ratio Test P-Value: 0.3972
+    - Parameter F Test P-Value: 0.4003
 - Lag 3:
-    - SSR Based Test P-Value: 0.5657
-    - SSR Based chi2 Test P-Value: 0.5603
-    - Likelihood Ratio Test P-Value: 0.561
-    - Parameter F Test P-Value: 0.5657
+    - SSR Based Test P-Value: 0.2865
+    - SSR Based chi2 Test P-Value: 0.2801
+    - Likelihood Ratio Test P-Value: 0.2816
+    - Parameter F Test P-Value: 0.2865
 - Lag 4:
-    - SSR Based Test P-Value: 0.9259
-    - SSR Based chi2 Test P-Value: 0.924
-    - Likelihood Ratio Test P-Value: 0.9241
-    - Parameter F Test P-Value: 0.9259
-- Lag 5:
-    - SSR Based Test P-Value: 0.5235
-    - SSR Based chi2 Test P-Value: 0.5116
-    - Likelihood Ratio Test P-Value: 0.5138
-    - Parameter F Test P-Value: 0.5235
+    - SSR Based Test P-Value: 0.8002
+    - SSR Based chi2 Test P-Value: 0.7956
+    - Likelihood Ratio Test P-Value: 0.796
+    - Parameter F Test P-Value: 0.8002
 RESULT:
 
     0.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is less than the Causal Threshold set at 80.0.
+    This number is less than the Causal Threshold set at 50.0.
     Therefore, the null hypothesis will be ACCEPTED, and it is concluded that Primary Energy Consumed by the Industrial Sector DOES NOT CAUSE Total Energy Consumed. 
     
