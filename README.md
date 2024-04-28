@@ -21,7 +21,7 @@ To find the ACF plot of this same variable, the path below would be followed:
 
 Visualizations --> Monthly --> MovingAverages --> ACF --> residential_sector_electrical_system_energy_losses.png
 
-### Folders
+### Folder Contents
 
 * `Data` --> Holds all data used for this project. The provided data were `Energy Consumption_r.csv` and `GDP-1.csv`. These wre transformed into monthly and quarterly csv files `formatted_data_mothly.csv` and `formatted_data.csv` using the scripts `format_data.py` and `format_monthly_data.py`. The `MovingAverages` folder holds these two csv files but transformed into stationary data.
 * `EDA` --> Holds two scripts used during the early phases of this project to plot and cluster time series.
