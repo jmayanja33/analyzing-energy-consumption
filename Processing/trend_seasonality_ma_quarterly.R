@@ -41,6 +41,8 @@ for (i in 1:num_cols){
 # Save detrended data to a csv file
 write.csv(stationary_data, "../Data/MovingAverages/quarterly_moving_averages_data.csv", row.names=FALSE)
 
+## Create training and test sets for each variable ##
+
 # Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector
 train.Primary.Energy.Consumed.by.the.Residential.Sector <- ts(head(stationary_data$Primary.Energy.Consumed.by.the.Residential.Sector, -12), 
                                                               start=c(1973), freq=12)
@@ -213,7 +215,7 @@ corr_resid_matrix <- data.frame(
   Residual.Correlation.to.GDP = correlations
 )
 
-# Save Matrix
+# Save matrix to a csv file
 write.csv(corr_resid_matrix, glue("../Models/MovingAverages/Quarterly/VAR/var_resid_correlation.csv"))
 
 

@@ -9,7 +9,6 @@ from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.stattools import grangercausalitytests
 from matplotlib import pyplot as plt
-# from sector_columns import *
 import pandas as pd
 import numpy as np
 import pickle
@@ -32,7 +31,6 @@ predictor_cols = [
     "End.Use.Energy.Consumed.by.the.Industrial.Sector",
     "Industrial.Sector.Electrical.System.Energy.Losses",
     "Total.Energy.Consumed.by.the.Industrial.Sector"
-
 ]
 
 
@@ -98,10 +96,13 @@ def acf(data, column, quarterly, directory, data_type, lags=None):
     """Function to plot an ACF plot"""
     print(f"Plotting ACF for: {quarterly} - {directory} - {column}")
 
+    # Plot ACF
     if lags is None:
         plot_acf(data, lags=24*4)
     else:
         plot_acf(data, lags=lags)
+
+    # Format Plot
     plt.title(f"{format_column_name(column, filename=False)} ACF Plot")
     plt.xlabel("Lags")
     plt.ylabel("ACF Value")
@@ -118,10 +119,13 @@ def pacf(data, column, quarterly, directory, data_type, lags=None):
     """Function to plot a PACF plot"""
     print(f"Plotting ACF for: {quarterly} - {directory} - {column}")
 
+    # Plot PACF
     if lags is None:
         plot_pacf(data, lags=len(data)/10)
     else:
         plot_pacf(data, lags=lags)
+
+    # Format Plot
     plt.title(f"{format_column_name(column, filename=False)} PACF Plot")
     plt.xlabel("Lags")
     plt.ylabel("PACF Value")
@@ -141,7 +145,7 @@ def dickey_fuller(data, column, quarterly, directory, data_type, significance=0.
     # Perform a Dickey-Fuller test
     df_test = adfuller(data, autolag=autolag, regression="ct")
 
-    # Determine null hypothesis
+    # Determine if null hypothesis is accepted/rejected
     p_value = df_test[1]
     if p_value < significance:
         null_hypothesis_decision = f"Since the p-value ({p_value}) is less than the significance value ({significance}), the null hypothesis IS rejected, so the series IS deemed stationary."
@@ -174,9 +178,9 @@ def dickey_fuller(data, column, quarterly, directory, data_type, significance=0.
 ** {null_hypothesis_decision} **
 
     """)
-
     df_test_file.close()
 
+    # Return if the variable was stationary or not
     return stationary
 
 
@@ -223,6 +227,7 @@ def granger_causality(data, quarterly, directory, data_type, target_cols, signif
 
 Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE {format_column_name(target, filename=False)}       
 """
+                # Initialize list to hold p-values of tests from all lags
                 p_values = []
 
                 # Add statistics to test file

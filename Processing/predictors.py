@@ -13,8 +13,10 @@ if __name__ == '__main__':
     quarterly_ma = pd.read_csv("../Data/MovingAverages/quarterly_moving_averages_data.csv")
     monthly_ma = pd.read_csv("../Data/MovingAverages/monthly_moving_averages_data.csv")
 
+    # Perform Granger Causality tests for Monthly Data
     granger_causality(monthly_ma, "Monthly", "MovingAverages", "RawData",
                       target_cols=["Total.Energy.Consumed"])
 
+    # Perform Granger Causality tests for Quarterly Data
     granger_causality(quarterly_ma, "Quarterly", "MovingAverages", "RawData",
                       target_cols=["Total.Energy.Consumed", "GDP"])
