@@ -1,4 +1,6 @@
 import pandas as pd
+import sys
+import os
 from Helpers.helpers import *
 
 
@@ -41,10 +43,12 @@ def test_stationarity(data, quarterly, directory, data_type):
 if __name__ == '__main__':
 
     # Load data
-    quarterly_data = pd.read_csv("../Data/formatted_data.csv")
-    monthly_data = pd.read_csv("../Data/formatted_data_monthly.csv")
-    quarterly_ma = pd.read_csv("../Data/MovingAverages/quarterly_moving_averages_data.csv")
-    monthly_ma = pd.read_csv("../Data/MovingAverages/monthly_moving_averages_data.csv")
+    import os
+    print("Current working directory:", os.getcwd())
+    quarterly_data = pd.read_csv("./Data/formatted_data.csv")
+    monthly_data = pd.read_csv("./Data/formatted_data_monthly.csv")
+    quarterly_ma = pd.read_csv("./Data/MovingAverages/quarterly_moving_averages_data.csv")
+    monthly_ma = pd.read_csv("./Data/MovingAverages/monthly_moving_averages_data.csv")
 
     # Evaluate stationarity on raw data
     test_stationarity(quarterly_data, "Quarterly", "RawData", "RawData")

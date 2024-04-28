@@ -1,0 +1,19 @@
+Variable,P-Value
+DATE,0.9875187748822785
+Primary Energy Consumed by the Residential Sector,0.00045544568086452775
+Electricity Sales to Ultimate Customers in the Residential Sector,1.7677612796258307e-05
+End-Use Energy Consumed by the Residential Sector,0.0009225852089310691
+Residential Sector Electrical System Energy Losses,6.459585518565442e-05
+Total Energy Consumed by the Residential Sector,0.0011276056856091828
+Primary Energy Consumed by the Commercial Sector,0.0024995329602828737
+Electricity Sales to Ultimate Customers in the Commercial Sector,4.0634143451944455e-06
+End-Use Energy Consumed by the Commercial Sector,0.013334326085964373
+Commercial Sector Electrical System Energy Losses,0.0014168463970193833
+Total Energy Consumed by the Commercial Sector,0.022978929742468072
+Primary Energy Consumed by the Industrial Sector,0.3031000713860102
+Electricity Sales to Ultimate Customers in the Industrial Sector,0.053391617479569144
+End-Use Energy Consumed by the Industrial Sector,0.24998087111658426
+Industrial Sector Electrical System Energy Losses,0.5275166379795556
+Total Energy Consumed by the Industrial Sector,0.22705672219555878
+Total Energy Consumed,0.009858174972696076
+Avg.Temp,0.00026376451351174836

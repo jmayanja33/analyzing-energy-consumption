@@ -1,4 +1,5 @@
 from datetime import datetime
+import statsmodels.api as sm
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.stattools import grangercausalitytests
@@ -80,11 +81,11 @@ def plot_ts(data, column, quarterly, directory, data_type):
     plt.plot(x_data, y_data)
 
     # Save figure
-    make_directory("../Visualizations", quarterly)
-    make_directory(f"../Visualizations/{quarterly}", directory)
-    make_directory(f"../Visualizations/{quarterly}/{directory}", "TSPlots")
-    make_directory(f"../Visualizations/{quarterly}/{directory}/TSPlots", data_type)
-    plt.savefig(f"../Visualizations/{quarterly}/{directory}/TSPlots/{data_type}/{format_column_name(column)}.png")
+    make_directory("./Visualizations", quarterly)
+    make_directory(f"./Visualizations/{quarterly}", directory)
+    make_directory(f"./Visualizations/{quarterly}/{directory}", "TSPlots")
+    make_directory(f"./Visualizations/{quarterly}/{directory}/TSPlots", data_type)
+    plt.savefig(f"./Visualizations/{quarterly}/{directory}/TSPlots/{data_type}/{format_column_name(column)}.png")
     plt.clf()
 
 
@@ -101,11 +102,11 @@ def acf(data, column, quarterly, directory, data_type, lags=None):
     plt.ylabel("ACF Value")
 
     # Save figure
-    make_directory("../Visualizations", quarterly)
-    make_directory(f"../Visualizations/{quarterly}", directory)
-    make_directory(f"../Visualizations/{quarterly}/{directory}", "ACF")
-    make_directory(f"../Visualizations/{quarterly}/{directory}/ACF", data_type)
-    plt.savefig(f"../Visualizations/{quarterly}/{directory}/ACF/{data_type}/{format_column_name(column)}.png")
+    make_directory("./Visualizations", quarterly)
+    make_directory(f"./Visualizations/{quarterly}", directory)
+    make_directory(f"./Visualizations/{quarterly}/{directory}", "ACF")
+    make_directory(f"./Visualizations/{quarterly}/{directory}/ACF", data_type)
+    plt.savefig(f"./Visualizations/{quarterly}/{directory}/ACF/{data_type}/{format_column_name(column)}.png")
 
 
 def pacf(data, column, quarterly, directory, data_type, lags=None):
@@ -121,11 +122,11 @@ def pacf(data, column, quarterly, directory, data_type, lags=None):
     plt.ylabel("PACF Value")
 
     # Save figure
-    make_directory("../Visualizations", quarterly)
-    make_directory(f"../Visualizations/{quarterly}", directory)
-    make_directory(f"../Visualizations/{quarterly}/{directory}", "PACF")
-    make_directory(f"../Visualizations/{quarterly}/{directory}/PACF", data_type)
-    plt.savefig(f"../Visualizations/{quarterly}/{directory}/PACF/{data_type}/{format_column_name(column)}.png")
+    make_directory("./Visualizations", quarterly)
+    make_directory(f"./Visualizations/{quarterly}", directory)
+    make_directory(f"./Visualizations/{quarterly}/{directory}", "PACF")
+    make_directory(f"./Visualizations/{quarterly}/{directory}/PACF", data_type)
+    plt.savefig(f"./Visualizations/{quarterly}/{directory}/PACF/{data_type}/{format_column_name(column)}.png")
 
 
 def dickey_fuller(data, column, quarterly, directory, data_type, significance=0.05, autolag="AIC"):
@@ -145,13 +146,13 @@ def dickey_fuller(data, column, quarterly, directory, data_type, significance=0.
         stationary = False
 
     # Make directory for file
-    make_directory("../StatisticalTests/StationarityTest", quarterly)
-    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}", directory)
-    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}", data_type)
-    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}/{data_type}/", "DickeyFuller")
+    make_directory("./StatisticalTests/StationarityTest", quarterly)
+    make_directory(f"./StatisticalTests/StationarityTest/{quarterly}", directory)
+    make_directory(f"./StatisticalTests/StationarityTest/{quarterly}/{directory}", data_type)
+    make_directory(f"./StatisticalTests/StationarityTest/{quarterly}/{directory}/{data_type}/", "DickeyFuller")
 
     # Write results to a file
-    df_test_file = open(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}/{data_type}/DickeyFuller/{format_column_name(column)}_dickey_fuller.txt", "w")
+    df_test_file = open(f"./StatisticalTests/StationarityTest/{quarterly}/{directory}/{data_type}/DickeyFuller/{format_column_name(column)}_dickey_fuller.txt", "w")
     df_test_file.write(f"""DICKEY-FULLER TEST RESULTS:
     - Model: {directory}
     - Data Type: {data_type}
@@ -179,12 +180,12 @@ def count_stationary_series(stationary_series, non_stationary_series, quarterly,
     print(f"Counting stationary series for: {quarterly} - {directory}")
 
     # Make directory for file
-    make_directory(f"../StatisticalTests/StationarityTest/", quarterly)
-    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}", directory)
-    make_directory(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}", data_type)
+    make_directory(f"./StatisticalTests/StationarityTest/", quarterly)
+    make_directory(f"./StatisticalTests/StationarityTest/{quarterly}", directory)
+    make_directory(f"./StatisticalTests/StationarityTest/{quarterly}/{directory}", data_type)
 
     # Write file
-    stationary_file = open(f"../StatisticalTests/StationarityTest/{quarterly}/{directory}/{data_type}/stationary_series_counts.txt", "w")
+    stationary_file = open(f"./StatisticalTests/StationarityTest/{quarterly}/{directory}/{data_type}/stationary_series_counts.txt", "w")
     stationary_file.write(f"""STATIONARY SERIES COUNT:
 
 - Model: {directory}
@@ -264,13 +265,13 @@ Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Tot
                 content += hypothesis_content
 
                 # Make directories to save test results
-                make_directory(f"../StatisticalTests", "GCTest")
-                make_directory(f"../StatisticalTests/GCTest", quarterly)
-                make_directory(f"../StatisticalTests/GCTest/{quarterly}", directory)
-                make_directory(f"../StatisticalTests/GCTest/{quarterly}/{directory}", data_type)
-                make_directory(f"../StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}", format_dir_name(target))
+                make_directory(f"./StatisticalTests", "GCTest")
+                make_directory(f"./StatisticalTests/GCTest", quarterly)
+                make_directory(f"./StatisticalTests/GCTest/{quarterly}", directory)
+                make_directory(f"./StatisticalTests/GCTest/{quarterly}/{directory}", data_type)
+                make_directory(f"./StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}", format_dir_name(target))
 
                 # Write file
-                gc_file = open(f"../StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}/{format_dir_name(target)}/{format_column_name(column)}_granger_causality.txt", "w")
+                gc_file = open(f"./StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}/{format_dir_name(target)}/{format_column_name(column)}_granger_causality.txt", "w")
                 gc_file.write(content)
                 gc_file.close()

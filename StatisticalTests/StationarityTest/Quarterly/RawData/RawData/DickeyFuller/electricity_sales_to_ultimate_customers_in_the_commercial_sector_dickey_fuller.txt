@@ -5,7 +5,7 @@ DICKEY-FULLER TEST RESULTS:
     
     - Null Hypothesis: The series is stationary
     
-    - ADF-Statistic: 0.3478958933356386
+    - ADF-Statistic: 0.347895893335621
     - P-Value: 0.9964499729817262
     - Number of Lags: 15
     - Number of Observations: 184
