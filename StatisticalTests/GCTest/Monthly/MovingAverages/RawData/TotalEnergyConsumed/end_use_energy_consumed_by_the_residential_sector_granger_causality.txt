@@ -1,35 +1,30 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: End Use Energy Consumed by the Residential Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: End Use Energy Consumed by the Residential Sector DOES NOT CAUSE Total Energy Consumed       
 
 - Lag 1:
-    - SSR Based Test P-Value: 0.3548
-    - SSR Based chi2 Test P-Value: 0.3531
-    - Likelihood Ratio Test P-Value: 0.3533
-    - Parameter F Test P-Value: 0.3548
+    - SSR Based Test P-Value: 0.005
+    - SSR Based chi2 Test P-Value: 0.0047
+    - Likelihood Ratio Test P-Value: 0.0049
+    - Parameter F Test P-Value: 0.005
 - Lag 2:
-    - SSR Based Test P-Value: 0.0276
-    - SSR Based chi2 Test P-Value: 0.0261
-    - Likelihood Ratio Test P-Value: 0.0267
-    - Parameter F Test P-Value: 0.0276
+    - SSR Based Test P-Value: 0.0142
+    - SSR Based chi2 Test P-Value: 0.0133
+    - Likelihood Ratio Test P-Value: 0.0137
+    - Parameter F Test P-Value: 0.0142
 - Lag 3:
-    - SSR Based Test P-Value: 0.0079
-    - SSR Based chi2 Test P-Value: 0.007
-    - Likelihood Ratio Test P-Value: 0.0074
-    - Parameter F Test P-Value: 0.0079
+    - SSR Based Test P-Value: 0.0011
+    - SSR Based chi2 Test P-Value: 0.0009
+    - Likelihood Ratio Test P-Value: 0.001
+    - Parameter F Test P-Value: 0.0011
 - Lag 4:
-    - SSR Based Test P-Value: 0.1275
-    - SSR Based chi2 Test P-Value: 0.1205
-    - Likelihood Ratio Test P-Value: 0.1226
-    - Parameter F Test P-Value: 0.1275
-- Lag 5:
-    - SSR Based Test P-Value: 0.5053
-    - SSR Based chi2 Test P-Value: 0.4932
-    - Likelihood Ratio Test P-Value: 0.4955
-    - Parameter F Test P-Value: 0.5053
+    - SSR Based Test P-Value: 0.2829
+    - SSR Based chi2 Test P-Value: 0.2737
+    - Likelihood Ratio Test P-Value: 0.2759
+    - Parameter F Test P-Value: 0.2829
 RESULT:
                 
-    40.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is greater than/equal to the Causal Threshold set at 80.0 %.
+    75.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is greater than/equal to the Causal Threshold set at 50.0 %.
     Therefore, the null hypothesis will be REJECTED, and it is concluded that End Use Energy Consumed by the Residential Sector CAUSES Total Energy Consumed.
     

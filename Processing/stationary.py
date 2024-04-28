@@ -1,3 +1,7 @@
+"""
+Script to test if series are stationary. Results will be saved in the StatisticalTests/StationarityTest Folder
+"""
+
 import pandas as pd
 import sys
 import os

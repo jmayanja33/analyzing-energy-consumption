@@ -1,35 +1,30 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: End Use Energy Consumed by the Industrial Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: End Use Energy Consumed by the Industrial Sector DOES NOT CAUSE Total Energy Consumed       
 
 - Lag 1:
-    - SSR Based Test P-Value: 0.9293
-    - SSR Based chi2 Test P-Value: 0.9291
-    - Likelihood Ratio Test P-Value: 0.9291
-    - Parameter F Test P-Value: 0.9293
+    - SSR Based Test P-Value: 0.5972
+    - SSR Based chi2 Test P-Value: 0.5961
+    - Likelihood Ratio Test P-Value: 0.5961
+    - Parameter F Test P-Value: 0.5972
 - Lag 2:
-    - SSR Based Test P-Value: 0.3652
-    - SSR Based chi2 Test P-Value: 0.3615
-    - Likelihood Ratio Test P-Value: 0.3621
-    - Parameter F Test P-Value: 0.3652
+    - SSR Based Test P-Value: 0.4408
+    - SSR Based chi2 Test P-Value: 0.4372
+    - Likelihood Ratio Test P-Value: 0.4377
+    - Parameter F Test P-Value: 0.4408
 - Lag 3:
-    - SSR Based Test P-Value: 0.4673
-    - SSR Based chi2 Test P-Value: 0.4612
-    - Likelihood Ratio Test P-Value: 0.4622
-    - Parameter F Test P-Value: 0.4673
+    - SSR Based Test P-Value: 0.3339
+    - SSR Based chi2 Test P-Value: 0.3274
+    - Likelihood Ratio Test P-Value: 0.3288
+    - Parameter F Test P-Value: 0.3339
 - Lag 4:
-    - SSR Based Test P-Value: 0.9571
-    - SSR Based chi2 Test P-Value: 0.9559
-    - Likelihood Ratio Test P-Value: 0.956
-    - Parameter F Test P-Value: 0.9571
-- Lag 5:
-    - SSR Based Test P-Value: 0.4911
-    - SSR Based chi2 Test P-Value: 0.4789
-    - Likelihood Ratio Test P-Value: 0.4812
-    - Parameter F Test P-Value: 0.4911
+    - SSR Based Test P-Value: 0.8525
+    - SSR Based chi2 Test P-Value: 0.849
+    - Likelihood Ratio Test P-Value: 0.8493
+    - Parameter F Test P-Value: 0.8525
 RESULT:
 
     0.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is less than the Causal Threshold set at 80.0.
+    This number is less than the Causal Threshold set at 50.0.
     Therefore, the null hypothesis will be ACCEPTED, and it is concluded that End Use Energy Consumed by the Industrial Sector DOES NOT CAUSE Total Energy Consumed. 
     

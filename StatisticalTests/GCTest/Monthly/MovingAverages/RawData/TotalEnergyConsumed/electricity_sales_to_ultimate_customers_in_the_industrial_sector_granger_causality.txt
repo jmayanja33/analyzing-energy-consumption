@@ -1,35 +1,30 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: Electricity Sales to Ultimate Customers in the Industrial Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: Electricity Sales to Ultimate Customers in the Industrial Sector DOES NOT CAUSE Total Energy Consumed       
 
 - Lag 1:
-    - SSR Based Test P-Value: 0.0078
-    - SSR Based chi2 Test P-Value: 0.0075
-    - Likelihood Ratio Test P-Value: 0.0077
-    - Parameter F Test P-Value: 0.0078
+    - SSR Based Test P-Value: 0.1241
+    - SSR Based chi2 Test P-Value: 0.1226
+    - Likelihood Ratio Test P-Value: 0.1229
+    - Parameter F Test P-Value: 0.1241
 - Lag 2:
-    - SSR Based Test P-Value: 0.0027
-    - SSR Based chi2 Test P-Value: 0.0024
-    - Likelihood Ratio Test P-Value: 0.0026
-    - Parameter F Test P-Value: 0.0027
+    - SSR Based Test P-Value: 0.1764
+    - SSR Based chi2 Test P-Value: 0.1729
+    - Likelihood Ratio Test P-Value: 0.1738
+    - Parameter F Test P-Value: 0.1764
 - Lag 3:
-    - SSR Based Test P-Value: 0.1637
-    - SSR Based chi2 Test P-Value: 0.1582
-    - Likelihood Ratio Test P-Value: 0.1597
-    - Parameter F Test P-Value: 0.1637
+    - SSR Based Test P-Value: 0.1264
+    - SSR Based chi2 Test P-Value: 0.1214
+    - Likelihood Ratio Test P-Value: 0.1229
+    - Parameter F Test P-Value: 0.1264
 - Lag 4:
-    - SSR Based Test P-Value: 0.0059
-    - SSR Based chi2 Test P-Value: 0.005
-    - Likelihood Ratio Test P-Value: 0.0054
-    - Parameter F Test P-Value: 0.0059
-- Lag 5:
-    - SSR Based Test P-Value: 0.296
-    - SSR Based chi2 Test P-Value: 0.2835
-    - Likelihood Ratio Test P-Value: 0.2866
-    - Parameter F Test P-Value: 0.296
+    - SSR Based Test P-Value: 0.0561
+    - SSR Based chi2 Test P-Value: 0.0516
+    - Likelihood Ratio Test P-Value: 0.0532
+    - Parameter F Test P-Value: 0.0561
 RESULT:
-                
-    60.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is greater than/equal to the Causal Threshold set at 80.0 %.
-    Therefore, the null hypothesis will be REJECTED, and it is concluded that Electricity Sales to Ultimate Customers in the Industrial Sector CAUSES Total Energy Consumed.
+
+    0.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is less than the Causal Threshold set at 50.0.
+    Therefore, the null hypothesis will be ACCEPTED, and it is concluded that Electricity Sales to Ultimate Customers in the Industrial Sector DOES NOT CAUSE Total Energy Consumed. 
     

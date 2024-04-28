@@ -1,0 +1,11 @@
+"","Variables","Residual.Correlation.to.Total.Energy.Consumed"
+"1","train.Primary.Energy.Consumed.by.the.Residential.Sector",0.00694749199126582
+"2","train.Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector",-0.218450340210247
+"3","train.End.Use.Energy.Consumed.by.the.Residential.Sector",-0.0350342597185168
+"4","train.Total.Energy.Consumed.by.the.Residential.Sector",-0.075314756488899
+"5","train.Primary.Energy.Consumed.by.the.Commercial.Sector",0.115923817558404
+"6","train.Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector",0.0151578768227006
+"7","train.End.Use.Energy.Consumed.by.the.Commercial.Sector",0.112232543118751
+"8","train.Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector",0.688182966920147
+"9","train.Industrial.Sector.Electrical.System.Energy.Losses",0.359515431960796
+"10","train.GDP",1

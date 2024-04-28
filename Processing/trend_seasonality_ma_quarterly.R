@@ -14,7 +14,6 @@ num_cols <- length(names(data))
 
 # Initialize data frame to hold spline model results
 stationary_data <- head(data, -4)
-# stationary_data_residuals <- data
 
   
 # Iterate through each column and remove trend/seasonality with moving averages
@@ -35,13 +34,14 @@ for (i in 1:num_cols){
     
     # Save data to dataframe
     stationary_data[column] <- unclass(ts_column_trend_season_removed)
-    # stationary_data_residuals[column] <- residuals(ts)
   }
 }
 
 
 # Save detrended data to a csv file
 write.csv(stationary_data, "../Data/MovingAverages/quarterly_moving_averages_data.csv", row.names=FALSE)
+
+## Create training and test sets for each variable ##
 
 # Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector
 train.Primary.Energy.Consumed.by.the.Residential.Sector <- ts(head(stationary_data$Primary.Energy.Consumed.by.the.Residential.Sector, -12), 
@@ -139,137 +139,83 @@ test.Total.Energy.Consumed.by.the.Industrial.Sector <- ts(tail(stationary_data$T
                                                           start=c(2021), freq=12)
 
 # Total.Energy
-train.Total.Energy <- ts(head(stationary_data$Total.Energy.Consumed, -12),
-                         start=c(1973), freq=12)
-test.Total.Energy <- ts(tail(stationary_data$Total.Energy.Consumed, 12),
-                        start=c(2021), freq=12)
+train.Total.Energy.Consumed <- ts(head(stationary_data$Total.Energy.Consumed, -12),
+                                  start=c(1973), freq=12)
+test.Total.Energy.Consumed <- ts(tail(stationary_data$Total.Energy.Consumed, 12),
+                                 start=c(2021), freq=12)
+
+# GDP
+train.GDP <- ts(head(stationary_data$GDP, -12),start=c(1973), freq=12)
+test.GDP <- ts(tail(stationary_data$GDP, 12), start=c(2021), freq=12)
 
 
 
 # Merge training and test data
-train_data <- cbind(train.Primary.Energy.Consumed.by.the.Residential.Sector, 
+train_data <- cbind(train.Primary.Energy.Consumed.by.the.Residential.Sector,
                     train.Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector,
                     train.End.Use.Energy.Consumed.by.the.Residential.Sector,
-                    train.Residential.Sector.Electrical.System.Energy.Losses,
                     train.Total.Energy.Consumed.by.the.Residential.Sector,
                     train.Primary.Energy.Consumed.by.the.Commercial.Sector,
                     train.Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector,
                     train.End.Use.Energy.Consumed.by.the.Commercial.Sector,
-                    train.Commercial.Sector.Electrical.System.Energy.Losses,
-                    train.Total.Energy.Consumed.by.the.Commercial.Sector,
-                    train.Primary.Energy.Consumed.by.the.Industrial.Sector,
                     train.Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector,
-                    train.End.Use.Energy.Consumed.by.the.Industrial.Sector,
                     train.Industrial.Sector.Electrical.System.Energy.Losses,
-                    train.Total.Energy.Consumed.by.the.Industrial.Sector)
-
-test_data <- cbind(test.Primary.Energy.Consumed.by.the.Residential.Sector,
-                   test.Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector,
-                   test.End.Use.Energy.Consumed.by.the.Residential.Sector,
-                   test.Residential.Sector.Electrical.System.Energy.Losses,
-                   test.Total.Energy.Consumed.by.the.Residential.Sector,
-                   test.Primary.Energy.Consumed.by.the.Commercial.Sector,
-                   test.Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector,
-                   test.End.Use.Energy.Consumed.by.the.Commercial.Sector,
-                   test.Commercial.Sector.Electrical.System.Energy.Losses,
-                   test.Total.Energy.Consumed.by.the.Commercial.Sector,
-                   test.Primary.Energy.Consumed.by.the.Industrial.Sector,
-                   test.Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector,
-                   test.End.Use.Energy.Consumed.by.the.Industrial.Sector,
-                   test.Industrial.Sector.Electrical.System.Energy.Losses,
-                   test.Total.Energy.Consumed.by.the.Industrial.Sector)
+                    train.GDP)
 
 
 # Fit VAR Model
 var_model_select <- VARselect(train_data, lag.max=50)
 var_model_select$selection
 
-var_model <- VAR(train_data, p=10)
-var_model_sum <- capture.output(summary(var_model))
-writeLines(var_model_sum, glue("../Models/MovingAverages/Quarterly/VAR/var_summary.txt"))
+var_model <- VAR(train_data, p=14)
+
+# Calculate residual correlation for each variable
+gdp_resid <- resid(var_model$varresult$train.GDP)
+resid1 <- resid(var_model$varresult$train.Primary.Energy.Consumed.by.the.Residential.Sector)
+resid2 <- resid(var_model$varresult$train.Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector)
+resid3 <- resid(var_model$varresult$train.End.Use.Energy.Consumed.by.the.Residential.Sector)
+resid4 <- resid(var_model$varresult$train.Total.Energy.Consumed.by.the.Residential.Sector)
+resid5 <- resid(var_model$varresult$train.Primary.Energy.Consumed.by.the.Commercial.Sector)
+resid6 <- resid(var_model$varresult$train.Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector)
+resid7 <- resid(var_model$varresult$train.End.Use.Energy.Consumed.by.the.Commercial.Sector)
+resid8 <- resid(var_model$varresult$train.Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector)
+resid9 <- resid(var_model$varresult$train.Industrial.Sector.Electrical.System.Energy.Losses)
+
+# Calculate correlations
+corr1 <- cor(gdp_resid, resid1)
+corr2 <- cor(gdp_resid, resid2)
+corr3 <- cor(gdp_resid, resid3)
+corr4 <- cor(gdp_resid, resid4)
+corr5 <- cor(gdp_resid, resid5)
+corr6 <- cor(gdp_resid, resid6)
+corr7 <- cor(gdp_resid, resid7)
+corr8 <- cor(gdp_resid, resid8)
+corr9 <- cor(gdp_resid, resid9)
+gdp_corr <- cor(gdp_resid, gdp_resid)
 
 
-# Create linear model for total energy
-total_model <- lm(Total.Energy.Consumed ~ Primary.Energy.Consumed.by.the.Residential.Sector + 
-                    Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector + 
-                    End.Use.Energy.Consumed.by.the.Residential.Sector + 
-                    Residential.Sector.Electrical.System.Energy.Losses + 
-                    Primary.Energy.Consumed.by.the.Commercial.Sector + 
-                    Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector +
-                    End.Use.Energy.Consumed.by.the.Commercial.Sector + 
-                    Commercial.Sector.Electrical.System.Energy.Losses + 
-                    Primary.Energy.Consumed.by.the.Industrial.Sector + 
-                    Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector + 
-                    Industrial.Sector.Electrical.System.Energy.Losses,
-                  data=stationary_data
+# Make residual-correlation matrix for each variable
+resid_rows <- c("train.Primary.Energy.Consumed.by.the.Residential.Sector",
+                "train.Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector",
+                "train.End.Use.Energy.Consumed.by.the.Residential.Sector",
+                "train.Total.Energy.Consumed.by.the.Residential.Sector",
+                "train.Primary.Energy.Consumed.by.the.Commercial.Sector",
+                "train.Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector",
+                "train.End.Use.Energy.Consumed.by.the.Commercial.Sector",
+                "train.Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector",
+                "train.Industrial.Sector.Electrical.System.Energy.Losses",
+                "train.GDP")
+
+correlations <- c(corr1, corr2, corr3, corr4, corr5, corr6, corr7, corr8, corr9,
+                  gdp_corr)
+
+# Write data frame
+corr_resid_matrix <- data.frame(
+  Variables = resid_rows,
+  Residual.Correlation.to.GDP = correlations
 )
-# Save to summary to .txt file
-total_model_sum <- capture.output(summary(total_model))
-writeLines(total_model_sum, glue("../Models/MovingAverages/Quarterly/LM/total_energy_summary.txt"))
 
-
-# Create linear model for total residential sector energy
-residential_model <- lm(Total.Energy.Consumed.by.the.Residential.Sector ~ Primary.Energy.Consumed.by.the.Residential.Sector + 
-                          Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector + 
-                          End.Use.Energy.Consumed.by.the.Residential.Sector + 
-                          Residential.Sector.Electrical.System.Energy.Losses + 
-                          Primary.Energy.Consumed.by.the.Commercial.Sector + 
-                          Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector +
-                          End.Use.Energy.Consumed.by.the.Commercial.Sector + 
-                          Commercial.Sector.Electrical.System.Energy.Losses + 
-                          Primary.Energy.Consumed.by.the.Industrial.Sector + 
-                          Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector + 
-                          Industrial.Sector.Electrical.System.Energy.Losses +
-                          Total.Energy.Consumed.by.the.Commercial.Sector +
-                          Total.Energy.Consumed.by.the.Industrial.Sector,
-                        data=stationary_data
-)
-# Save to summary to .txt file
-residential_model_sum <- capture.output(summary(residential_model))
-writeLines(residential_model_sum, glue("../Models/MovingAverages/Quarterly/LM/residential_energy_summary.txt"))
-
-# Create linear model for total residential sector energy
-commercial_model <- lm(Total.Energy.Consumed.by.the.Commercial.Sector ~ Primary.Energy.Consumed.by.the.Residential.Sector + 
-                         Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector + 
-                         End.Use.Energy.Consumed.by.the.Residential.Sector + 
-                         Residential.Sector.Electrical.System.Energy.Losses + 
-                         Primary.Energy.Consumed.by.the.Commercial.Sector +
-                         Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector +
-                         End.Use.Energy.Consumed.by.the.Commercial.Sector + 
-                         Commercial.Sector.Electrical.System.Energy.Losses + 
-                         Primary.Energy.Consumed.by.the.Industrial.Sector + 
-                         Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector +
-                         Industrial.Sector.Electrical.System.Energy.Losses +
-                         Total.Energy.Consumed.by.the.Residential.Sector +
-                         Total.Energy.Consumed.by.the.Industrial.Sector,
-                       data=stationary_data
-)
-# Save to summary to .txt file
-commercial_model_sum <- capture.output(summary(commercial_model))
-writeLines(commercial_model_sum, glue("../Models/MovingAverages/Quarterly/LM/commercial_energy_summary.txt"))
-
-# Create linear model for total residential sector energy
-industrial_model <- lm(Total.Energy.Consumed.by.the.Industrial.Sector ~ Primary.Energy.Consumed.by.the.Residential.Sector + 
-                         Electricity.Sales.to.Ultimate.Customers.in.the.Residential.Sector + 
-                         End.Use.Energy.Consumed.by.the.Residential.Sector + 
-                         Residential.Sector.Electrical.System.Energy.Losses + 
-                         Primary.Energy.Consumed.by.the.Commercial.Sector +
-                         Electricity.Sales.to.Ultimate.Customers.in.the.Commercial.Sector +
-                         End.Use.Energy.Consumed.by.the.Commercial.Sector + 
-                         Commercial.Sector.Electrical.System.Energy.Losses + 
-                         Primary.Energy.Consumed.by.the.Industrial.Sector + 
-                         Electricity.Sales.to.Ultimate.Customers.in.the.Industrial.Sector +
-                         Industrial.Sector.Electrical.System.Energy.Losses +
-                         Total.Energy.Consumed.by.the.Residential.Sector +
-                         Total.Energy.Consumed.by.the.Commercial.Sector,
-                       data=stationary_data
-)
-# Save to summary to .txt file
-industrial_model_sum <- capture.output(summary(industrial_model))
-writeLines(industrial_model_sum, glue("../Models/MovingAverages/Quarterly/LM/industrial_energy_summary.txt"))
-
-
-
-
+# Save matrix to a csv file
+write.csv(corr_resid_matrix, glue("../Models/MovingAverages/Quarterly/VAR/var_resid_correlation.csv"))
 
 

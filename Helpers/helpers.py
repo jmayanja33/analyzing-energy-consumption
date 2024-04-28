@@ -1,10 +1,15 @@
+"""
+File of helper scripts to automate the process of performing tests, creating visualizations, and saving results to
+.txt files
+"""
+
+
 from datetime import datetime
 import statsmodels.api as sm
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.stattools import grangercausalitytests
 from matplotlib import pyplot as plt
-# from sector_columns import *
 import pandas as pd
 import numpy as np
 import pickle
@@ -27,7 +32,6 @@ predictor_cols = [
     "End.Use.Energy.Consumed.by.the.Industrial.Sector",
     "Industrial.Sector.Electrical.System.Energy.Losses",
     "Total.Energy.Consumed.by.the.Industrial.Sector"
-
 ]
 
 
@@ -93,10 +97,13 @@ def acf(data, column, quarterly, directory, data_type, lags=None):
     """Function to plot an ACF plot"""
     print(f"Plotting ACF for: {quarterly} - {directory} - {column}")
 
+    # Plot ACF
     if lags is None:
         plot_acf(data, lags=24*4)
     else:
         plot_acf(data, lags=lags)
+
+    # Format Plot
     plt.title(f"{format_column_name(column, filename=False)} ACF Plot")
     plt.xlabel("Lags")
     plt.ylabel("ACF Value")
@@ -113,10 +120,13 @@ def pacf(data, column, quarterly, directory, data_type, lags=None):
     """Function to plot a PACF plot"""
     print(f"Plotting ACF for: {quarterly} - {directory} - {column}")
 
+    # Plot PACF
     if lags is None:
         plot_pacf(data, lags=len(data)/10)
     else:
         plot_pacf(data, lags=lags)
+
+    # Format Plot
     plt.title(f"{format_column_name(column, filename=False)} PACF Plot")
     plt.xlabel("Lags")
     plt.ylabel("PACF Value")
@@ -136,7 +146,7 @@ def dickey_fuller(data, column, quarterly, directory, data_type, significance=0.
     # Perform a Dickey-Fuller test
     df_test = adfuller(data, autolag=autolag, regression="ct")
 
-    # Determine null hypothesis
+    # Determine if null hypothesis is accepted/rejected
     p_value = df_test[1]
     if p_value < significance:
         null_hypothesis_decision = f"Since the p-value ({p_value}) is less than the significance value ({significance}), the null hypothesis IS rejected, so the series IS deemed stationary."
@@ -169,9 +179,9 @@ def dickey_fuller(data, column, quarterly, directory, data_type, significance=0.
 ** {null_hypothesis_decision} **
 
     """)
-
     df_test_file.close()
 
+    # Return if the variable was stationary or not
     return stationary
 
 
@@ -202,23 +212,26 @@ def count_stationary_series(stationary_series, non_stationary_series, quarterly,
     stationary_file.close()
 
 
-def granger_causality(data, quarterly, directory, data_type, target_cols, significance=0.05, threshold=0.8, maxlag=5):
+def granger_causality(data, quarterly, directory, data_type, target_cols, significance=0.05, threshold=0.5, maxlag=4):
     """Function to perform a granger causality test"""
     for target in target_cols:
+        # Initialize Tracking for Causal and Non-Causal Varaibles
+        causal_cols = []
+        non_causal_cols = []
         for column in predictor_cols:
             if column not in {'DATE', 'Month', 'Quarter', 'Formatted.Data'} and column != target:
-
+                # Perform test
                 print(f"Performing granger causality test for: {quarterly} - {directory} - {format_column_name(column, filename=False)}")
-
                 gc_test = grangercausalitytests(data[[target, column]], maxlag=maxlag)
-
+                # Create test file
                 content = f"""GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Total Energy            
+Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE {format_column_name(target, filename=False)}       
 """
+                # Initialize list to hold p-values of tests from all lags
                 p_values = []
 
-                # Add statistics to file
+                # Add statistics to test file
                 for item in gc_test:
                     # Get and save P-Values
                     ssr_f_test_p = round(gc_test[item][0]['ssr_ftest'][1], 4)
@@ -231,7 +244,7 @@ Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Tot
                     p_values.append(lrtest_p)
                     p_values.append(params_ftest_p)
 
-                    # Write to file
+                    # Write to test file
                     lag_content = f"""\n- Lag {item}:
     - SSR Based Test P-Value: {ssr_f_test_p}
     - SSR Based chi2 Test P-Value: {ssr_chi2_p}
@@ -244,16 +257,17 @@ Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Tot
                 num_significant = len([j for j in p_values if j < significance])
                 significant_percent = round(num_significant / len(p_values), 4) * 100
 
-
-                if significant_percent >= threshold:
+                # Add decision to test file
+                if significant_percent >= threshold*100:
+                    causal_cols.append((format_column_name(column, filename=False), significant_percent))
                     hypothesis_content = f"""\nRESULT:
                 
     {significant_percent} % of the P-Values are lower than the significance level of {significance}.
     This number is greater than/equal to the Causal Threshold set at {threshold*100} %.
     Therefore, the null hypothesis will be REJECTED, and it is concluded that {format_column_name(column, filename=False)} CAUSES {format_column_name(target, filename=False)}.
     """
-
                 else:
+                    non_causal_cols.append((format_column_name(column, filename=False), significant_percent))
                     hypothesis_content = f"""\nRESULT:
 
     {significant_percent} % of the P-Values are lower than the significance level of {significance}.
@@ -271,7 +285,33 @@ Null Hypothesis: {format_column_name(column, filename=False)} DOES NOT CAUSE Tot
                 make_directory(f"./StatisticalTests/GCTest/{quarterly}/{directory}", data_type)
                 make_directory(f"./StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}", format_dir_name(target))
 
+<<<<<<< HEAD
                 # Write file
                 gc_file = open(f"./StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}/{format_dir_name(target)}/{format_column_name(column)}_granger_causality.txt", "w")
+=======
+                # Write test file
+                gc_file = open(f"../StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}/{format_dir_name(target)}/{format_column_name(column)}_granger_causality.txt", "w")
+>>>>>>> 990838fe8f915199ae3aad510c7fd48abffc0894
                 gc_file.write(content)
                 gc_file.close()
+
+            # Create summary file
+            causal_summary_file = open(f"../StatisticalTests/GCTest/{quarterly}/{directory}/{data_type}/{format_dir_name(target)}/granger_causality_summary.txt", "w")
+            causal_content = f"""SUMMARY OF GRANGER CAUSALITY TESTS FOR {target}:
+    
+- NUM. CAUSAL VARIABLES: {len(causal_cols)}
+- CAUSAL VARIABLES:"""
+
+            # Add causal variables to the summary file
+            for i in causal_cols:
+                causal_content += f"\n\t- {i[0]}: {i[1]} % p-values lower than threshold of {threshold}"
+
+            causal_content += f"\n\n- NUM. NON-CAUSAL VARIABLES: {len(non_causal_cols)}"
+
+            # Add non-causal variables to the summary file
+            for i in non_causal_cols:
+                causal_content += f"\n\t- {i[0]}: {i[1]} % p-values lower than threshold of {threshold}"
+
+            # Write summary file
+            causal_summary_file.write(causal_content)
+            causal_summary_file.close()

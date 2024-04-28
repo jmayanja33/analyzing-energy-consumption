@@ -1,35 +1,30 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: Primary Energy Consumed by the Commercial Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: Primary Energy Consumed by the Commercial Sector DOES NOT CAUSE Total Energy Consumed       
 
 - Lag 1:
-    - SSR Based Test P-Value: 0.4771
-    - SSR Based chi2 Test P-Value: 0.4757
-    - Likelihood Ratio Test P-Value: 0.4758
-    - Parameter F Test P-Value: 0.4771
+    - SSR Based Test P-Value: 0.6627
+    - SSR Based chi2 Test P-Value: 0.6617
+    - Likelihood Ratio Test P-Value: 0.6617
+    - Parameter F Test P-Value: 0.6627
 - Lag 2:
-    - SSR Based Test P-Value: 0.3812
-    - SSR Based chi2 Test P-Value: 0.3774
-    - Likelihood Ratio Test P-Value: 0.378
-    - Parameter F Test P-Value: 0.3812
+    - SSR Based Test P-Value: 0.8279
+    - SSR Based chi2 Test P-Value: 0.8265
+    - Likelihood Ratio Test P-Value: 0.8266
+    - Parameter F Test P-Value: 0.8279
 - Lag 3:
-    - SSR Based Test P-Value: 0.9858
-    - SSR Based chi2 Test P-Value: 0.9856
-    - Likelihood Ratio Test P-Value: 0.9856
-    - Parameter F Test P-Value: 0.9858
+    - SSR Based Test P-Value: 0.8005
+    - SSR Based chi2 Test P-Value: 0.7976
+    - Likelihood Ratio Test P-Value: 0.7978
+    - Parameter F Test P-Value: 0.8005
 - Lag 4:
-    - SSR Based Test P-Value: 0.8016
-    - SSR Based chi2 Test P-Value: 0.797
-    - Likelihood Ratio Test P-Value: 0.7975
-    - Parameter F Test P-Value: 0.8016
-- Lag 5:
-    - SSR Based Test P-Value: 0.4917
-    - SSR Based chi2 Test P-Value: 0.4796
-    - Likelihood Ratio Test P-Value: 0.4819
-    - Parameter F Test P-Value: 0.4917
+    - SSR Based Test P-Value: 0.8913
+    - SSR Based chi2 Test P-Value: 0.8887
+    - Likelihood Ratio Test P-Value: 0.8888
+    - Parameter F Test P-Value: 0.8913
 RESULT:
 
     0.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is less than the Causal Threshold set at 80.0.
+    This number is less than the Causal Threshold set at 50.0.
     Therefore, the null hypothesis will be ACCEPTED, and it is concluded that Primary Energy Consumed by the Commercial Sector DOES NOT CAUSE Total Energy Consumed. 
     

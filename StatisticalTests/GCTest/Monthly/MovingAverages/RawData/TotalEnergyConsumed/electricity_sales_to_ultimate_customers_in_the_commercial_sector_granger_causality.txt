@@ -1,35 +1,30 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: Electricity Sales to Ultimate Customers in the Commercial Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: Electricity Sales to Ultimate Customers in the Commercial Sector DOES NOT CAUSE Total Energy Consumed       
 
 - Lag 1:
-    - SSR Based Test P-Value: 0.5614
-    - SSR Based chi2 Test P-Value: 0.5601
-    - Likelihood Ratio Test P-Value: 0.5602
-    - Parameter F Test P-Value: 0.5614
+    - SSR Based Test P-Value: 0.2544
+    - SSR Based chi2 Test P-Value: 0.2527
+    - Likelihood Ratio Test P-Value: 0.253
+    - Parameter F Test P-Value: 0.2544
 - Lag 2:
-    - SSR Based Test P-Value: 0.3585
-    - SSR Based chi2 Test P-Value: 0.3547
-    - Likelihood Ratio Test P-Value: 0.3553
-    - Parameter F Test P-Value: 0.3585
+    - SSR Based Test P-Value: 0.0748
+    - SSR Based chi2 Test P-Value: 0.0723
+    - Likelihood Ratio Test P-Value: 0.0732
+    - Parameter F Test P-Value: 0.0748
 - Lag 3:
-    - SSR Based Test P-Value: 0.7669
-    - SSR Based chi2 Test P-Value: 0.7635
-    - Likelihood Ratio Test P-Value: 0.7638
-    - Parameter F Test P-Value: 0.7669
+    - SSR Based Test P-Value: 0.0192
+    - SSR Based chi2 Test P-Value: 0.0175
+    - Likelihood Ratio Test P-Value: 0.0183
+    - Parameter F Test P-Value: 0.0192
 - Lag 4:
-    - SSR Based Test P-Value: 0.561
-    - SSR Based chi2 Test P-Value: 0.5527
-    - Likelihood Ratio Test P-Value: 0.554
-    - Parameter F Test P-Value: 0.561
-- Lag 5:
-    - SSR Based Test P-Value: 0.9764
-    - SSR Based chi2 Test P-Value: 0.9755
-    - Likelihood Ratio Test P-Value: 0.9755
-    - Parameter F Test P-Value: 0.9764
+    - SSR Based Test P-Value: 0.0966
+    - SSR Based chi2 Test P-Value: 0.0905
+    - Likelihood Ratio Test P-Value: 0.0925
+    - Parameter F Test P-Value: 0.0966
 RESULT:
 
-    0.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is less than the Causal Threshold set at 80.0.
+    25.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is less than the Causal Threshold set at 50.0.
     Therefore, the null hypothesis will be ACCEPTED, and it is concluded that Electricity Sales to Ultimate Customers in the Commercial Sector DOES NOT CAUSE Total Energy Consumed. 
     

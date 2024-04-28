@@ -1,6 +1,6 @@
 GRANGER CAUSALITY TEST RESULTS
 
-Null Hypothesis: Primary Energy Consumed by the Commercial Sector DOES NOT CAUSE Total Energy            
+Null Hypothesis: Primary Energy Consumed by the Commercial Sector DOES NOT CAUSE GDP       
 
 - Lag 1:
     - SSR Based Test P-Value: 0.0093
@@ -22,14 +22,9 @@ Null Hypothesis: Primary Energy Consumed by the Commercial Sector DOES NOT CAUSE
     - SSR Based chi2 Test P-Value: 0.0076
     - Likelihood Ratio Test P-Value: 0.0094
     - Parameter F Test P-Value: 0.0119
-- Lag 5:
-    - SSR Based Test P-Value: 0.0512
-    - SSR Based chi2 Test P-Value: 0.0355
-    - Likelihood Ratio Test P-Value: 0.0409
-    - Parameter F Test P-Value: 0.0512
 RESULT:
                 
-    90.0 % of the P-Values are lower than the significance level of 0.05.
-    This number is greater than/equal to the Causal Threshold set at 80.0 %.
+    100.0 % of the P-Values are lower than the significance level of 0.05.
+    This number is greater than/equal to the Causal Threshold set at 50.0 %.
     Therefore, the null hypothesis will be REJECTED, and it is concluded that Primary Energy Consumed by the Commercial Sector CAUSES GDP.
     
